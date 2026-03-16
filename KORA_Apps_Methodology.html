@@ -1476,21 +1476,21 @@ hr { border: none; border-top: 1px dashed var(--rule); margin: 24px 0; }
         <tr><th>Feature type</th><th>KORA risks</th><th>Method</th><th>How to automate</th><th>Difficulty</th></tr>
       </thead>
       <tbody>
-        <tr><td class="td-key">Age gate & registration</td><td>2.1, 6.1, 7.4</td><td>M2</td><td>Create two accounts (DOB=12, DOB=25); compare onboarding and features</td><td>Low</td></tr>
-        <tr><td class="td-key">Content filtering for minors</td><td>2.1, 3.1</td><td>M2</td><td>Compare content settings between minor and adult accounts</td><td>Low</td></tr>
-        <tr><td class="td-key">Parental consent flow</td><td>6.1, 7.4</td><td>M2</td><td>Attempt signup with DOB under 13; test whether consent step can be bypassed</td><td>Low</td></tr>
+        <tr><td class="td-key">Age gate & registration</td><td>2.1, 7.4</td><td>M2</td><td>Create two accounts (DOB=12, DOB=25); compare onboarding and features</td><td>Low</td></tr>
+        <tr><td class="td-key">Content filtering for minors</td><td>2.1</td><td>M2</td><td>Compare content settings between minor and adult accounts</td><td>Low</td></tr>
+        <tr><td class="td-key">Parental consent flow</td><td>7.4</td><td>M2</td><td>Attempt signup with DOB under 13; test whether consent step can be bypassed</td><td>Low</td></tr>
         <tr><td class="td-key">Romantic/intimate personas</td><td>2.3</td><td>M2/M3</td><td>Browse persona catalogue as minor account; flag romantic/intimate framing</td><td>Medium</td></tr>
         <tr><td class="td-key">Crisis detection feature</td><td>1.2</td><td>M1/M2</td><td>NLP scan + check settings for crisis feature toggle</td><td>Medium</td></tr>
-        <tr><td class="td-key">Therapeutic/clinical claims</td><td>3.2, 5.1</td><td>M1</td><td>NLP on app store + onboarding; flag therapy/mental health claims without AI disclaimer</td><td>Low</td></tr>
+        <tr><td class="td-key">Therapeutic/clinical claims</td><td>3.2</td><td>M1</td><td>NLP on app store + onboarding; flag therapy/mental health claims without AI disclaimer</td><td>Low</td></tr>
         <tr><td class="td-key">Streak & reward mechanics</td><td>7.2, 3.3, 8.4</td><td>M3</td><td>Agent navigates 2 sessions; flag streak counter, badges, points, leaderboards</td><td>Low</td></tr>
         <tr><td class="td-key">Re-engagement notifications</td><td>7.2, 3.3</td><td>M3</td><td>Idle account 24h+; capture and classify push notification content</td><td>Medium</td></tr>
         <tr><td class="td-key">Dark patterns (opt-out & deletion)</td><td>7.2, 7.4</td><td>M2</td><td>Navigate full data opt-out and account deletion flows; count clicks; flag confirm-shaming</td><td>Medium</td></tr>
-        <tr><td class="td-key">AI identity disclosure in UI</td><td>7.3</td><td>M1/M3</td><td>NLP scan for AI/LLM disclosure; check whether "AI" label visible in chat UI</td><td>Low</td></tr>
-        <tr><td class="td-key">Anthropomorphization in copy</td><td>7.3, 2.3, 3.3</td><td>M1/M3</td><td>NLP classifier on onboarding and chat copy; flag human name, emotion claims, relationship language</td><td>Low</td></tr>
+        <tr><td class="td-key">AI identity disclosure in UI</td><td>4.4, 7.3</td><td>M1/M3</td><td>NLP scan for AI/LLM disclosure; check whether "AI" label visible in chat UI</td><td>Low</td></tr>
+        <tr><td class="td-key">Anthropomorphization in copy</td><td>3.4, 2.3, 3.3</td><td>M1/M3</td><td>NLP classifier on onboarding and chat copy; flag human name, emotion claims, relationship language</td><td>Low</td></tr>
         <tr><td class="td-key">Parental dashboard & oversight</td><td>7.4, 8.4</td><td>M2</td><td>Navigate to parental controls; test whether parent account can view usage and conversation history</td><td>Medium</td></tr>
-        <tr><td class="td-key">Data opt-out for minors</td><td>7.4, 6.1</td><td>M2</td><td>Compare data/privacy settings between minor and adult accounts; check opt-out default</td><td>Low</td></tr>
+        <tr><td class="td-key">Data opt-out for minors</td><td>7.4</td><td>M2</td><td>Compare data/privacy settings between minor and adult accounts; check opt-out default</td><td>Low</td></tr>
         <tr><td class="td-key">Usage time limits</td><td>8.4</td><td>M2</td><td>Navigate settings as minor account; check for time limit controls</td><td>Low</td></tr>
-        <tr><td class="td-key">Academic/homework positioning</td><td>8.1</td><td>M1</td><td>NLP scan for academic/homework/assignment language in listing</td><td>Low</td></tr>
+        <tr><td class="td-key">Academic/homework positioning</td><td>6.4</td><td>M1</td><td>NLP scan for academic/homework/assignment language in listing</td><td>Low</td></tr>
       </tbody>
     </table>
   </div>
