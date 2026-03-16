@@ -1416,6 +1416,7 @@ hr { border: none; border-top: 1px dashed var(--rule); margin: 24px 0; }
           <li><strong>Run each scenario multiple times.</strong> Check whether repeating the same conversations produces stable scores or significant variance. For unstable categories, Run 2+ will repeat each scenario three times.</li>
           <li><strong>Test with adult user baseline.</strong> Run the exact same test scenarios with a neutral adult persona instead of a child persona to measure the child protection delta.</li>
           <li><strong>Monitor the child agent model.</strong> Periodically check whether DeepSeek v3 is still the best available option, or whether a newer model produces more realistic child personas.</li>
+          <li><strong>Upgrade to Trust-or-Escalate judge cascade.</strong> Replace the single-judge setup with a two-stage pipeline: Stage 1 fast judge on all conversations (grade + confidence score), Adequate verdicts escalate to a 3-model majority panel. Reduces cost by ~60–65% vs a full panel pass while improving reliability on borderline cases. Out of scope for Run 1. See KORA Benchmark Methodology V2, Section 3 (Judge Pipeline) for full design.</li>
         </ul>
       </div>
     </details>
@@ -1798,7 +1799,7 @@ hr { border: none; border-top: 1px dashed var(--rule); margin: 24px 0; }
           <li><strong>Bias audit.</strong> After Run 1, test for self-preference bias (judge scoring its own provider's app more favourably) and verbosity bias on a 200-conversation subsample — CALM framework (Gu et al. 2024).</li>
           <li><strong>Product layer validation.</strong> Define detection accuracy metrics (precision / recall per feature type) against a gold set of known product states. Scope and method to be defined after Run 1.</li>
         </ul>
-        <p style="margin-top:12px;font-size:11.5px;color:var(--muted);">For the full validation framework design — including cascade validation, adversarial red-teaming, and gold standard maintenance protocol — see <strong>KORA Benchmark Methodology V2</strong>, Section 4 (Validation Framework).</p>
+        <p style="margin-top:12px;font-size:11.5px;color:var(--muted);">For the full validation framework design — including cascade validation, adversarial red-teaming, and gold standard maintenance protocol — see <a href="https://stepherlin.github.io/kora-apps-methodology/KORA_Benchmark_V2_Evolution.html" target="_blank" style="color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px;">KORA Benchmark Methodology V2</a>, Section 4 (Validation Framework).</p>
       </div>
     </details>
   </section>
@@ -1831,6 +1832,12 @@ hr { border: none; border-top: 1px dashed var(--rule); margin: 24px 0; }
           <td class="td-key">2 test conditions<br><span style="font-weight:400;color:var(--muted);font-size:11px;">Default + child-aware prompt</span></td>
           <td class="td-desc">~1,500–1,800</td>
           <td class="td-num">~$10,000</td>
+          <td class="td-once">One-time</td>
+        </tr>
+        <tr>
+          <td class="td-key">Adult baseline run<br><span style="font-weight:400;color:var(--muted);font-size:11px;">900 scenarios with adult persona — child-protection delta</span></td>
+          <td class="td-desc">~900</td>
+          <td class="td-num">~$2,500–4,000</td>
           <td class="td-once">One-time</td>
         </tr>
         <tr>
@@ -1883,13 +1890,9 @@ hr { border: none; border-top: 1px dashed var(--rule); margin: 24px 0; }
     </table>
 
     <details class="kd" style="margin-top:24px;">
-      <summary>Next version — proposals & open questions</summary>
+      <summary>Next version — open questions</summary>
       <div class="kd-body">
-        <ul style="padding-left:16px;line-height:1.9;margin:0;">
-          <li><strong>Reduce costs for apps without a public API.</strong> Consumer apps without an API require multiple accounts and rate-limit management. Explore smarter batching and parallel testing to reduce time and account overhead.</li>
-          <li><strong>Budget the panel review separately.</strong> When the 3-judge review panel is activated (, roughly 40% of conversations will be reviewed by 3 judges instead of 1 — roughly doubling judge cost. This should be approved separately.</li>
-          <li><strong>Budget the adult-baseline run separately.</strong> Running 900 test scenarios with an adult persona doubles conversation simulation cost — a separate line item requiring independent approval.</li>
-        </ul>
+        <p><strong>Where is the right trade-off between validity and efficiency?</strong> More validation (larger human annotation sample, 3-judge panel, adult baseline) increases scientific credibility but compounds cost significantly. A leaner pipeline is faster and cheaper but produces results that are harder to defend publicly. The current design leans toward validity for Run 1 — but as runs become more frequent, the cost structure may need to shift. What is the minimum validation investment that still produces results families, regulators, and the press will trust?</p>
       </div>
     </details>
   </section>
