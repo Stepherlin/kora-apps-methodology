@@ -1809,6 +1809,10 @@ hr { border: none; border-top: 1px dashed var(--rule); margin: 24px 0; }
     <div class="sec-label">Section 7</div>
     <h2>Budget</h2>
 
+    <div class="callout accent" style="margin-bottom:24px;">
+      <strong>Recommendation — skip conversation-layer human validation for Run 1.</strong> KORA Apps is marginally more expensive than V1 — more turns on escalation risks, 5 additional risks, product agents. But the real cost driver is not the evaluation itself: it is human validation (Prolific annotation + expert arbitration) and LLM judge calibration, which can easily exceed $5,000–8,000 per cycle. Given that the Trust-or-Escalate judge pipeline (V2) is not yet implemented, running a full human validation pass now would calibrate a pipeline that will be replaced. The recommendation is to run the conversation layer without human validation for Run 1, and invest in proper validation only when the V2 judge architecture is in place.
+    </div>
+
     <h3>Run 1 — one-time cost to evaluate all 11 apps</h3>
     <p>This is the cost of running the full evaluation pipeline once across the entire corpus: conversation simulation (child agent × 11 apps × 30 risks × 3 age ranges × 10 scenarios), LLM judge, and product agents. It is a one-time cost. The main variable is whether the tests run under 1 prompt condition (default product prompt only) or 2 (default + child-aware prompt, which doubles the conversation volume).</p>
 
