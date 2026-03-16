@@ -1749,7 +1749,11 @@ hr { border: none; border-top: 1px dashed var(--rule); margin: 24px 0; }
     <div class="sec-label">Section 6</div>
     <h2>Validation</h2>
 
-    <p>Conversation-layer only for Run 1. The pipeline samples ~15% of conversations for human annotation, runs them through two layers (parent annotation via Prolific, then expert arbitration), and publishes calibration metrics alongside results. Thresholds are not fixed in advance — derived from Run 1 data and published as standing parameters. Product-layer validation will be defined after Run 1.</p>
+    <div class="callout accent" style="margin-bottom:20px;">
+      <strong>Out of MVP scope.</strong> The validation framework described in this section is not planned for Run 1. Human validation (Prolific annotation + expert arbitration) and LLM judge calibration are the main cost drivers of a full evaluation cycle — and calibrating the current single-judge setup would mean investing in a pipeline that will be replaced by the Trust-or-Escalate architecture (V2). The recommendation is to skip human validation for Run 1 and implement it properly alongside the V2 judge upgrade. This section documents the target framework for reference.
+    </div>
+
+    <p>Conversation-layer only. The pipeline samples ~15% of conversations for human annotation, runs them through two layers (parent annotation via Prolific, then expert arbitration), and publishes calibration metrics alongside results. Thresholds are not fixed in advance — derived from first validated run data and published as standing parameters. Product-layer validation will be defined after Run 1.</p>
 
     <div class="pipeline" style="margin:24px 0;">
       <div class="pipeline-step">
