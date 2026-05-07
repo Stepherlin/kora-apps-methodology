@@ -40,9 +40,9 @@ html,body{width:100%;height:100%;background:var(--paper);color:var(--ink);font-f
 }
 
 /* ── LAYOUT ── */
-#viz{position:fixed;top:60px;left:0;right:380px;bottom:0;background:var(--paper)}
+#viz{position:fixed;top:100px;left:0;right:380px;bottom:0;background:var(--paper)}
 #panel{
-  position:fixed;right:0;top:60px;width:380px;height:calc(100vh - 60px);
+  position:fixed;right:0;top:100px;width:380px;height:calc(100vh - 100px);
   background:var(--white);border-left:1px solid var(--rule);
   display:flex;flex-direction:column;overflow:hidden
 }
@@ -87,9 +87,80 @@ html,body{width:100%;height:100%;background:var(--paper);color:var(--ink);font-f
 .callout{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:0 3px 3px 0;padding:10px 12px;margin-top:14px;font-size:11px;color:#3a3830;line-height:1.6}
 .callout strong{color:var(--ink)}
 .gap-badge{display:inline-block;font-family:var(--fm);font-size:8px;letter-spacing:.08em;text-transform:uppercase;background:rgba(245,183,0,.15);color:#7a5c00;padding:3px 8px;border-radius:2px;margin-bottom:10px}
+
+/* ── TABS ── */
+#tab-bar{
+  position:fixed;top:60px;left:0;right:0;height:40px;z-index:50;
+  background:var(--white);border-bottom:1px solid var(--rule);
+  display:flex;align-items:stretch;
+}
+.tab-btn{
+  padding:0 24px;font-family:var(--fm);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);border:none;background:none;cursor:pointer;
+  border-bottom:2px solid transparent;transition:all .15s;
+}
+.tab-btn.active{color:var(--ink);border-bottom-color:var(--accent)}
+.tab-btn:hover:not(.active){color:var(--ink)}
+
+/* ── SAFETY TAB LAYOUT ── */
+#tab-safety{display:none;position:fixed;top:100px;left:0;right:0;bottom:0}
+#tab-safety.open{display:flex}
+#safety-canvas{flex:1;position:relative;overflow:hidden;background:var(--paper)}
+#safety-panel{
+  width:360px;flex-shrink:0;background:var(--white);
+  border-left:1px solid var(--rule);overflow-y:auto;
+}
+#safety-panel::-webkit-scrollbar{width:4px}
+#safety-panel::-webkit-scrollbar-thumb{background:var(--rule)}
+#sp-body{padding:28px 24px 32px}
+.sp-cluster-label{font-family:var(--fm);font-size:8px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;opacity:.85}
+.sp-node-title{font-family:var(--fs);font-size:21px;line-height:1.2;color:var(--ink);margin-bottom:0}
+.sp-divider{height:3px;width:32px;opacity:.5;margin:10px 0 16px;border-radius:2px}
+.sp-section{margin-bottom:18px}
+.sp-section-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--cream)}
+.sp-desc{font-size:11.5px;line-height:1.7;color:#3a3830}
+.sp-links-list{display:flex;flex-direction:column;gap:4px}
+.sp-link-item{display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border-radius:2px;background:var(--paper);font-size:10.5px;line-height:1.5;color:#3a3830}
+.sp-link-arr{color:var(--muted);flex-shrink:0;font-size:10px;margin-top:1px}
+.sp-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:40px;min-height:340px}
+.sp-empty-icon{font-size:26px;opacity:.13}
+.sp-empty-title{font-family:var(--fs);font-size:18px;color:var(--muted)}
+.sp-empty-body{font-size:11px;color:var(--muted);line-height:1.75;max-width:220px}
+#safety-legend{
+  position:absolute;bottom:20px;left:20px;display:flex;gap:14px;
+  background:rgba(247,244,239,.92);border:1px solid var(--rule);
+  border-radius:4px;padding:9px 16px;pointer-events:none;
+}
+.leg-item{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
 </style>
 </head>
 <body>
+<!-- TAB BAR -->
+<div id="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('spheres')">Developmental Spheres</button>
+  <button class="tab-btn" onclick="switchTab('safety')">AI Safety Process</button>
+</div>
+
+<div id="tab-safety">
+  <div id="safety-canvas">
+    <div id="safety-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#2563eb"></div>Research</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#d97706"></div>Benchmarks</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#059669"></div>Regulation</div>
+    </div>
+  </div>
+  <div id="safety-panel">
+    <div id="sp-body">
+      <div class="sp-empty">
+        <div class="sp-empty-icon">⬡</div>
+        <div class="sp-empty-title">AI Safety Process</div>
+        <div class="sp-empty-body">Click any node to explore how research, benchmarks and regulation interconnect in child AI safety.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- HEADER — KORA spec: logo left · title center · date right -->
 <div id="hd">
@@ -405,5 +476,312 @@ function showPanel(s) {
   pb.innerHTML = html;
 }
 </script>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  AI SAFETY PROCESS — Force-Directed Network (D3 v7)
+// ═══════════════════════════════════════════════════════
+
+const CLUSTERS = {
+  research:   { id:'research',   label:'Research',    color:'#2563eb', cx_f:.28, cy_f:.44 },
+  benchmarks: { id:'benchmarks', label:'Benchmarks',  color:'#d97706', cx_f:.5,  cy_f:.74 },
+  regulation: { id:'regulation', label:'Regulation',  color:'#059669', cx_f:.73, cy_f:.38 },
+};
+
+const SNODES = [
+  // RESEARCH
+  { id:'r1', cluster:'research', label:'Stanford SCALE', size:22,
+    full:'Stanford SCALE Corpus',
+    desc:'1,267 peer-reviewed studies on AI tool use in education (2023–2026). The largest systematic corpus on generative AI and student outcomes, curated by Stanford SCALE lab. Covers LLMs, chatbots, intelligent tutoring systems and their effects on children.',
+    out:{ b1:'Grounds framework design', b3:'Calibrates evidence quality thresholds', g1:'Policy-relevant evidence on child AI use' }},
+  { id:'r2', cluster:'research', label:'hrajanie Corpus', size:16,
+    full:'hrajanie Corpus (Herlin 2025)',
+    desc:'115 manually curated studies mapping technology exposure to child developmental outcomes across all 7 Brio spheres. Covers technologies from screen time (1960s) to LLMs (2024). Entity-typed with RiskMechanism and BenefitMechanism labels.',
+    out:{ b1:'Grounds all sphere scores', b2:'Defines mechanism taxonomy' }},
+  { id:'r3', cluster:'research', label:'Bastani RCT 2023', size:14,
+    full:'Bastani et al. RCT — ChatGPT & Learning (2023)',
+    desc:'Randomised controlled trial (N~1,000 students). Unrestricted ChatGPT access caused 17% post-test learning loss. HIGH evidence, STRONG causal confidence. The strongest causal evidence for metacognitive risk from LLMs in educational settings.',
+    out:{ b2:'Anchor study for metacognitive risk sphere', g1:'Primary causal evidence for AI Act risk classification', g3:'Age-specific learning risk → COPPA rationale' }},
+  { id:'r4', cluster:'research', label:'Living Meta-Analysis', size:13,
+    full:'Living Meta-Analysis on GenAI & Learning (LLAMA-LIMA 2026)',
+    desc:'Continuously updated systematic review aggregating evidence across 200+ studies on generative AI in K-12 and higher education. Effect size synthesis by outcome type. Provides the evolving evidence base for regulatory review.',
+    out:{ b3:'Calibrates evidence quality thresholds', g2:'Ongoing evidence stream for UNESCO review' }},
+  { id:'r5', cluster:'research', label:'Brio Framework', size:20,
+    full:'Brio Developmental Framework (Herlin 2025)',
+    desc:'Theoretical framework organising 7 developmental spheres (Academic, Neurocognitive, Metacognitive, Affective-Motivational, Psychosocial, Sensorimotor, Creative) for assessing child outcomes from technology exposure. Ontological backbone of KORA Bench.',
+    out:{ b1:'Provides evaluation ontology', b2:'Defines sphere-level mechanisms', g2:'Aligned with UNESCO 4 pillars of AI education' }},
+  { id:'r6', cluster:'research', label:'Xu et al. 2024', size:10,
+    full:'Xu Mathemyths 2024 — Storytelling & LLMs',
+    desc:'Positive-valence RCT: LLM co-authoring supports narrative imagination and ideational fluency in children aged 6–10. Key benefit anchor in the Creative sphere. MEDIUM evidence, MODERATE causal confidence.',
+    out:{ b2:'Benefit mechanism: Creative sphere' }},
+  { id:'r7', cluster:'research', label:'Tutor CoPilot 2024', size:10,
+    full:'Tutor CoPilot 2024 — Personalised AI Tutoring at Scale',
+    desc:'Large-scale deployment (N>10,000 students). LLM-assisted tutoring improves maths outcomes when human-in-the-loop design is maintained. Key benefit anchor for Academic sphere personalisation claim.',
+    out:{ b2:'Benefit mechanism: Academic sphere' }},
+
+  // BENCHMARKS
+  { id:'b1', cluster:'benchmarks', label:'KORA Bench', size:22,
+    full:'KORA Bench — Child AI Safety Evaluation Framework',
+    desc:'Structured evaluation framework for assessing AI product safety for children across 7 developmental spheres. Integrates evidence strength, causal confidence, and outcome polarity into a child-specific safety index usable by schools, parents and regulators.',
+    out:{ g1:'Operationalises EU AI Act conformity requirements', g2:'Maps to UNESCO 4 pillars of learning' }},
+  { id:'b2', cluster:'benchmarks', label:'7 Brio Spheres', size:18,
+    full:'7 Brio Sphere Evaluation Grid',
+    desc:'Academic · Neurocognitive · Metacognitive · Affective-Motivational · Psychosocial · Sensorimotor · Creative. Each sphere scored on: N studies, N risks, N benefits, top mechanisms, evidence quality. Enables cross-product safety comparisons.',
+    out:{ g2:'Sphere taxonomy maps to UNESCO competency domains', g4:'Sensorimotor sphere addresses screen time rules' }},
+  { id:'b3', cluster:'benchmarks', label:'Evidence Scoring', size:14,
+    full:'Evidence Strength & Causal Confidence Scoring',
+    desc:'Three-tier evidence strength (HIGH / MEDIUM / LOW) × three-tier causal confidence (STRONG / MODERATE / WEAK) matrix. Adapted from GRADE methodology. Ensures policy recommendations are anchored to evidence quality, not just study count.',
+    out:{ g1:'Evidence thresholds map to AI Act risk tiers' }},
+  { id:'b4', cluster:'benchmarks', label:'Outcome Polarity', size:12,
+    full:'Outcome Polarity Index',
+    desc:'For each sphere: ratio of positive vs negative study outcomes. Identifies which developmental domains face net harm vs net benefit from AI tool exposure. Key metric for comparative safety claims across different AI products.',
+    out:{ g1:'Negative polarity → high-risk classification trigger', g3:'Child-specific harm threshold for COPPA compliance' }},
+  { id:'b5', cluster:'benchmarks', label:'Child Safety Score', size:13,
+    full:'KORA Child Safety Composite Score',
+    desc:'Aggregate safety score combining sphere scores, evidence quality, and outcome polarity. Designed to be comparable across AI products and directly actionable for procurement decisions in schools and by parents and regulators.',
+    out:{ g1:'Single metric for EU AI Act conformity assessment', g3:'Operationalises COPPA harm standard', g4:'Input for UK OSA risk assessment framework' }},
+
+  // REGULATION
+  { id:'g1', cluster:'regulation', label:'EU AI Act 2024', size:20,
+    full:'EU AI Act 2024 — AI Regulation Affecting Children',
+    desc:'In force since August 2024. Classifies AI systems with adverse effects on children as potentially high-risk (Annex III). Requires conformity assessment, transparency obligations, human oversight. KORA Bench provides the empirical evidence layer.',
+    out:{ b1:'Defines what must be measured → informs KORA scope' }},
+  { id:'g2', cluster:'regulation', label:'UNESCO AI Rec. 2021', size:17,
+    full:'UNESCO Recommendation on the Ethics of AI (2021)',
+    desc:'Adopted by 193 member states. Core principle: AI must support, not replace, human cognitive development. Explicitly protects children\'s right to develop their own reasoning capacities. Directly aligned with Brio Framework metacognitive risk findings.',
+    out:{ b1:'Policy requirements → KORA scope', b2:'UNESCO competency domains ↔ Brio sphere mapping' }},
+  { id:'g3', cluster:'regulation', label:'COPPA (USA)', size:13,
+    full:'Children\'s Online Privacy Protection Act (1998/2013)',
+    desc:'US federal law protecting children under 13. Limits data collection and requires parental consent. KORA Bench child safety scores can serve as evidence for COPPA harm assessments when AI systems collect behavioural data from minors.',
+    out:{ b5:'KORA safety score → COPPA harm threshold evidence' }},
+  { id:'g4', cluster:'regulation', label:'UK Online Safety Act', size:13,
+    full:'UK Online Safety Act 2023',
+    desc:'Requires platforms to protect children from harmful content and risks. Ofcom risk assessment framework covers under-18s. KORA Bench sensorimotor and psychosocial sphere scores are directly relevant to Ofcom\'s harmful content risk assessments.',
+    out:{ b5:'Sphere scores → Ofcom risk framework input' }},
+  { id:'g5', cluster:'regulation', label:'GDPR Article 8', size:11,
+    full:'GDPR Article 8 — Child Data Protection',
+    desc:'Requires parental consent for processing personal data of children under 16 (13 in some states). AI systems collecting learning behavioural data trigger GDPR obligations. KORA Bench flags data-intensive AI tools for regulatory scrutiny.',
+    out:{ b1:'Data risk flagging → GDPR scope identification' }},
+  { id:'g6', cluster:'regulation', label:'DSA (Europe)', size:11,
+    full:'Digital Services Act (EU) — Risk Assessment for Minors',
+    desc:'Very large online platforms must conduct systemic risk assessments specifically for minors (Article 34). Threats to physical and mental health are covered. KORA Bench provides the developmental evidence layer for DSA risk assessments.',
+    out:{ b1:'Developmental evidence → DSA compliance', b3:'Evidence quality rating → systemic risk tier' }},
+];
+
+// Build edge array from node.out definitions
+const SEDGES = [];
+SNODES.forEach(n => {
+  Object.entries(n.out || {}).forEach(([tgt, lbl]) => {
+    SEDGES.push({ source: n.id, target: tgt, label: lbl });
+  });
+});
+
+let safetyBuilt = false;
+
+function buildSafetyViz() {
+  if (safetyBuilt) return;
+  safetyBuilt = true;
+
+  const container = document.getElementById('safety-canvas');
+  const W = container.clientWidth, H = container.clientHeight;
+
+  // Resolve cluster centres
+  const C = CLUSTERS;
+  Object.values(C).forEach(c => { c.cx = c.cx_f * W; c.cy = c.cy_f * H; });
+
+  // Nodes with initial positions near their cluster
+  const nodes = SNODES.map(d => ({
+    ...d,
+    x: C[d.cluster].cx + (Math.random()-.5)*90,
+    y: C[d.cluster].cy + (Math.random()-.5)*70,
+  }));
+  const byId = {};
+  nodes.forEach(n => byId[n.id] = n);
+
+  const edges = SEDGES.map(e => ({
+    ...e, source: byId[e.source], target: byId[e.target]
+  })).filter(e => e.source && e.target);
+
+  const svg = d3.select('#safety-canvas').append('svg')
+    .attr('width', W).attr('height', H);
+
+  // Arrow markers per cluster colour
+  const defs = svg.append('defs');
+  Object.values(C).forEach(c => {
+    defs.append('marker')
+      .attr('id','arr-'+c.id).attr('viewBox','0 -4 8 8')
+      .attr('refX',8).attr('refY',0)
+      .attr('markerWidth',5).attr('markerHeight',5).attr('orient','auto')
+      .append('path').attr('d','M0,-4L8,0L0,4')
+      .attr('fill', c.color).attr('opacity',.55);
+  });
+
+  const gHull  = svg.append('g');
+  const gLink  = svg.append('g');
+  const gNode  = svg.append('g');
+  const gLabel = svg.append('g');
+  const gCLbl  = svg.append('g');
+
+  // Cluster labels (static — repelled by cy)
+  gCLbl.selectAll('text').data(Object.values(C)).enter().append('text')
+    .attr('x', d => d.cx).attr('y', d => d.cy - 120)
+    .attr('text-anchor','middle')
+    .attr('font-family','DM Mono,monospace').attr('font-size',9)
+    .attr('letter-spacing','0.12em').attr('fill', d => d.color)
+    .attr('opacity',.65).attr('font-weight','500')
+    .text(d => d.label.toUpperCase());
+
+  // Simulation
+  const sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(edges).id(d=>d.id)
+      .distance(d => d.source.cluster === d.target.cluster ? 75 : 160)
+      .strength(.25))
+    .force('charge', d3.forceManyBody().strength(-280))
+    .force('collide', d3.forceCollide().radius(d => d.size + 15).strength(.8))
+    .force('cx', d3.forceX(d => C[d.cluster].cx).strength(.32))
+    .force('cy', d3.forceY(d => C[d.cluster].cy).strength(.32));
+
+  // Links
+  const linkSel = gLink.selectAll('line').data(edges).enter().append('line')
+    .attr('stroke', d => C[d.source.cluster].color)
+    .attr('stroke-opacity', .28).attr('stroke-width', 1.5)
+    .attr('marker-end', d => `url(#arr-${d.source.cluster})`);
+
+  // Nodes
+  let activeId = null;
+
+  const nodeSel = gNode.selectAll('circle').data(nodes).enter().append('circle')
+    .attr('r', d => d.size)
+    .attr('fill', d => C[d.cluster].color).attr('fill-opacity', .12)
+    .attr('stroke', d => C[d.cluster].color).attr('stroke-width', 1.5)
+    .attr('stroke-opacity', .65).style('cursor','pointer')
+    .on('mouseover', function(ev, d) {
+      if (d.id !== activeId) d3.select(this).attr('fill-opacity',.22).attr('stroke-width',2);
+    })
+    .on('mouseout', function(ev, d) {
+      if (d.id !== activeId) d3.select(this).attr('fill-opacity',.12).attr('stroke-width',1.5);
+    })
+    .on('click', function(ev, d) {
+      ev.stopPropagation();
+      activeId = d.id;
+      nodeSel.attr('fill-opacity',.12).attr('stroke-width',1.5).attr('stroke-opacity',.65);
+      d3.select(this).attr('fill-opacity',.32).attr('stroke-width',2.5).attr('stroke-opacity',1);
+      // Highlight connected links
+      linkSel.attr('stroke-opacity', e =>
+        (e.source.id===d.id || e.target.id===d.id) ? .65 : .12
+      ).attr('stroke-width', e =>
+        (e.source.id===d.id || e.target.id===d.id) ? 2 : 1.5
+      );
+      renderPanel(d);
+    })
+    .call(d3.drag()
+      .on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag', (ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
+      .on('end',  (ev,d)=>{ if(!ev.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+  // Labels
+  const lbSel = gLabel.selectAll('text').data(nodes).enter().append('text')
+    .attr('text-anchor','middle').attr('dy', d => d.size + 13)
+    .attr('font-family','DM Mono,monospace').attr('font-size',8)
+    .attr('letter-spacing','0.04em')
+    .attr('fill', d => C[d.cluster].color).attr('opacity',.75)
+    .text(d => d.label).style('pointer-events','none');
+
+  // Hull redraw
+  function redrawHulls() {
+    const pts = {}; Object.keys(C).forEach(k => pts[k]=[]);
+    nodes.forEach(n => {
+      const p = n.size + 30;
+      [[-p,-p],[p,-p],[-p,p],[p,p]].forEach(([dx,dy]) => pts[n.cluster].push([n.x+dx,n.y+dy]));
+    });
+    gHull.selectAll('.hull').remove();
+    Object.entries(pts).forEach(([k,arr]) => {
+      const hull = d3.polygonHull(arr); if (!hull) return;
+      gHull.append('path').attr('class','hull')
+        .attr('d','M'+hull.join('L')+'Z')
+        .attr('fill', C[k].color).attr('fill-opacity',.045)
+        .attr('stroke', C[k].color).attr('stroke-opacity',.16)
+        .attr('stroke-width',1.5).attr('stroke-linejoin','round');
+    });
+  }
+
+  // Tick
+  sim.on('tick', () => {
+    nodes.forEach(n => {
+      n.x = Math.max(n.size+8, Math.min(W-n.size-8, n.x));
+      n.y = Math.max(n.size+8, Math.min(H-n.size-36, n.y));
+    });
+    linkSel
+      .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+      .attr('x2', d => { const dx=d.target.x-d.source.x, dy=d.target.y-d.source.y, r=Math.hypot(dx,dy)||1; return d.target.x-(dx/r)*(d.target.size+6); })
+      .attr('y2', d => { const dx=d.target.x-d.source.x, dy=d.target.y-d.source.y, r=Math.hypot(dx,dy)||1; return d.target.y-(dy/r)*(d.target.size+6); });
+    nodeSel.attr('cx', d=>d.x).attr('cy', d=>d.y);
+    lbSel.attr('x', d=>d.x).attr('y', d=>d.y);
+    redrawHulls();
+  });
+
+  // Click outside → reset
+  svg.on('click', () => {
+    activeId = null;
+    nodeSel.attr('fill-opacity',.12).attr('stroke-width',1.5).attr('stroke-opacity',.65);
+    linkSel.attr('stroke-opacity',.28).attr('stroke-width',1.5);
+    document.getElementById('sp-body').innerHTML = `
+      <div class="sp-empty">
+        <div class="sp-empty-icon">⬡</div>
+        <div class="sp-empty-title">AI Safety Process</div>
+        <div class="sp-empty-body">Click any node to explore how research, benchmarks and regulation interconnect in child AI safety.</div>
+      </div>`;
+  });
+
+  // Panel renderer
+  function renderPanel(d) {
+    const col = C[d.cluster].color;
+    const inE  = edges.filter(e => e.target.id===d.id);
+    const outE = edges.filter(e => e.source.id===d.id);
+    let linksHtml = '';
+    if (inE.length) {
+      linksHtml += `<div class="sp-section"><div class="sp-section-lbl">Receives from</div><div class="sp-links-list">`;
+      inE.forEach(e => {
+        linksHtml += `<div class="sp-link-item"><span class="sp-link-arr">→</span><span><strong>${e.source.label}</strong>${e.label?': '+e.label:''}</span></div>`;
+      });
+      linksHtml += `</div></div>`;
+    }
+    if (outE.length) {
+      linksHtml += `<div class="sp-section"><div class="sp-section-lbl">Feeds into</div><div class="sp-links-list">`;
+      outE.forEach(e => {
+        linksHtml += `<div class="sp-link-item"><span class="sp-link-arr">→</span><span><strong>${e.target.label}</strong>${e.label?': '+e.label:''}</span></div>`;
+      });
+      linksHtml += `</div></div>`;
+    }
+    document.getElementById('sp-body').innerHTML = `
+      <div class="sp-cluster-label" style="color:${col}">${C[d.cluster].label}</div>
+      <div class="sp-node-title">${d.full}</div>
+      <div class="sp-divider" style="background:${col}"></div>
+      <div class="sp-section"><div class="sp-section-lbl">Description</div><div class="sp-desc">${d.desc}</div></div>
+      ${linksHtml}`;
+  }
+}
+
+// Tab switch controller
+function switchTab(which) {
+  const btns = document.querySelectorAll('.tab-btn');
+  btns[0].classList.toggle('active', which==='spheres');
+  btns[1].classList.toggle('active', which==='safety');
+  const viz    = document.getElementById('viz');
+  const panel  = document.getElementById('panel');
+  const safety = document.getElementById('tab-safety');
+  if (which==='safety') {
+    if(viz) viz.style.display='none';
+    if(panel) panel.style.display='none';
+    safety.classList.add('open');
+    buildSafetyViz();
+  } else {
+    if(viz) viz.style.display='';
+    if(panel) panel.style.display='';
+    safety.classList.remove('open');
+  }
+}
+</script>
+
 </body>
 </html>
