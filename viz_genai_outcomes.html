@@ -369,11 +369,83 @@ const SPHERES = [
       "AI chatbots as mathematics mediators show significant learning gains (Building Bridges, 2024 — RCT)",
       "Real-time formative feedback loops accelerate reading fluency and writing quality in K-12"
     ],
-    studies_sample: [
-      { title: "Generative AI Can Harm Learning", authors: "Bastani et al.", year: 2024, design: "RCT", effect: "negative", note: "N>1000; AI assistance reduces test performance vs. control" },
-      { title: "Disrupting Education? Experimental Evidence on Technology-Aided Instruction", authors: "Muralidharan et al.", year: 2019, design: "RCT", effect: "positive", note: "N=619; 1.5 SD gain in math via AI tutoring" },
-      { title: "OLPC Peru Laptop RCT", authors: "Cristia et al.", year: 2017, design: "RCT", effect: "null", note: "N=1342; no reading/math effect after 2 years of laptop access" },
-      { title: "Effective Personalized AI Tutors via LLM-Guided RL", authors: "Stanford SCALE", year: 2026, design: "RCT", effect: "positive", note: "LLM-guided personalization significantly outperforms static curriculum" }
+    studies_all: [
+      { label:'Generative AI Can Harm Learning (Bastani et al., 2024)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'RCT N>1,000', note:'AI assistance during problem-solving reduces test performance vs. control' },
+      { label:'Disrupting Education? Technology-Aided Instruction (Muralidharan et al., 2019)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT N=619', note:'1.5 SD math gain via AI tutoring' },
+      { label:'OLPC Peru Laptop RCT (Cristia et al., 2017)', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT N=1,342', note:'Near-zero reading/math effect after 2 years' },
+      { label:'Effective Personalized AI Tutors via LLM-Guided RL (Stanford SCALE, 2026)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'LLM-guided personalization outperforms static curriculum' },
+      { label:'Artificial Intelligence Enhances Children\'s Science Learning (Xu, 2024)', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT', note:'' },
+      { label:'Transmission Versus Truth, Imitation Versus Innovation: What (Yiu, 2024)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Unknown', note:'' },
+      { label:'Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Exp (Wang, 2024)', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT', note:'' },
+      { label:'The development of human causal learning and reasoning (Gopnik, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review', note:'' },
+      { label:'Large AI Models are cultural and social technologies (Gopnik, 2025)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'theoretical', note:'' },
+      { label:'Myers et al. (2017) (Myers, 2017)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experiment', note:'' },
+      { label:'Kirkorian et al. (2009) (Kirkorian, 2009)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'within-subjects experiment', note:'' },
+      { label:'Anderson & Pempek (2005) (Anderson, 2005)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'review', note:'' },
+      { label:'Rasmussen et al. (2024) (Rasmussen, 2024)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'' },
+      { label:'Strouse & Samson (2021) (Strouse, 2021)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Aggregates lab studies; ecological validity unclear' },
+      { label:'Kearney & Levine (2019) (Kearney, 2019)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental (IV: broadcast reception)', note:'Long-term labor market effects imprecise; historical context differs from today' },
+      { label:'Mares & Pan (2013) (Mares, 2013)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Madigan et al. (2020) (Madigan, 2020)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review and meta-analysis', note:'Mostly correlational primary studies; cannot separate causation from selection' },
+      { label:'Lillard & Peterson (2011) (Lillard, 2011)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'randomized experiment', note:'Immediate effects only; unknown whether effects persist; single program comparison' },
+      { label:'Sugiyama et al. (2022) (Sugiyama, 2022)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal cohort', note:'Correlational; parental report measures' },
+      { label:'Danovitch (2019) (Danovitch, 2019)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'review', note:'Review covers sparse empirical base for young children specifically' },
+      { label:'Dutch adolescent multitasking longitudinal (2021) (Dutch adolescent multitasking , 2021)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'Correlation-based despite longitudinal design; self-report measures' },
+      { label:'Children\'s credibility evaluation development', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'Lab settings may overestimate real-world credibility checking' },
+      { label:'Cognitive Architecture of Digital Externalization (2023) (Cognitive Architecture of Digi, 2023)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'theoretical', note:'Framework, not empirical; child-specific application untested' },
+      { label:'Zulkifly et al. (2023) (Zulkifly, 2023)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Heterogeneous study designs; outcome measure inconsistency' },
+      { label:'Game-Based Learning Early Childhood Meta-analysis (2024) (Game-Based Learning Early Chil, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Transfer to specific academic domains is weak despite strong engagement effects' },
+      { label:'Paulus et al. (2018) (Paulus, 2018)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'systematic review', note:'Diagnostic criteria for IGD varied across studies; most studies cross-sectional' },
+      { label:'Lomas et al. (2013) (Lomas, 2013)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Minecraft Spatial Thinking Cluster RCT (2024) (Minecraft Spatial Thinking Clu, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'cluster RCT', note:'Spatial reasoning benefits require 3D construction mechanics; limited transfer to other domains' },
+      { label:'Stevic et al. (2024) (Stevic, 2024)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal panel', note:'Parent-reported attention; no objective measures; single country' },
+      { label:'McDaniel (2019) (McDaniel, 2019)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'survey + observational', note:'Self-report; cross-sectional; direction of effect debatable' },
+      { label:'Filter Bubble Systematic Review (2025) (Filter Bubble Systematic Revie, 2025)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review', note:'' },
+      { label:'Ma et al. (2014) (Ma, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Heterogeneous comparison conditions; publication bias possible' },
+      { label:'Steenbergen-Hu & Cooper (2013) (Steenbergen-Hu, 2013)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Math-specific; may not generalize to other domains' },
+      { label:'Steenbergen-Hu & Cooper (2014) (Steenbergen-Hu, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'College population; different self-regulation capacity than children' },
+      { label:'Bloom (1984) (Bloom, 1984)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental', note:'Small original study; effect size may be inflated; recent re-analyses suggest lower estimates' },
+      { label:'Kapur (2014) productive failure meta-analysis (Kapur, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Consolidation phase requires skilled instruction; unclear if AI can do this' },
+      { label:'Koedinger & Aleven (2007) (Koedinger, 2007)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'No single optimal policy; requires real-time learner modeling' },
+      { label:'ASSISTments RCT (RAND/Rowan) (Rowan, 2016)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Smaller effects than classroom ITS; homework context limits generalization' },
+      { label:'Pane et al. (2014) (Pane, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental', note:'Implementation fidelity varied; second-year effects may reflect teacher adaptation' },
+      { label:'VanLehn (2006) (VanLehn, 2006)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'theoretical-framework', note:'Framework, not empirical test' },
+      { label:'Baker et al. (2008) gaming the system (Baker, 2008)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'observational', note:'Observational; hard to determine if gaming causes poor learning or reflects it' },
+      { label:'Lovato & Piper (2019) (Lovato, 2019)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'observational', note:'' },
+      { label:'Xu et al. (2022) (Xu, 2022)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Oranc & Kuntay (2021) (Oranc, 2021)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'observational', note:'' },
+      { label:'Kory Westlund et al. (2019) (Kory Westlund, 2019)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Druga et al. (2019) (Druga, 2019)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'design-based research', note:'' },
+      { label:'Belpaeme et al. (2018) (Belpaeme, 2018)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review', note:'' },
+      { label:'Vollmer et al. (2018) (Vollmer, 2018)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Xu & Warschauer (2022) (Xu, 2022)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Single session; engagement with humans still superior on key dimensions' },
+      { label:'Bastani et al. (2024) (Bastani, 2024)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'RCT', note:'Single subject (math); single school context (Turkey); short time horizon' },
+      { label:'Google DeepMind LearnLM RCT (2025) (Google DeepMind LearnLM RCT, 2025)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Small N; exploratory; industry-sponsored; short duration; supervised context' },
+      { label:'Stanford SCALE AI-Assisted Tutoring (2024) (Stanford SCALE AI-Assisted Tut, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'AI assists the tutor not the child directly; may not generalize to direct AI-child interaction' },
+      { label:'Druga et al. (2021) (Druga, 2021)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'pre-post observational', note:'No control group; self-selected participants; observational design' },
+      { label:'Children\'s Mental Models of AI Reasoning (IDC 2025)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'Cross-sectional; no intervention; US sample only' },
+      { label:'TikTok Recommender Toxicity Escalation (2025) (TikTok Recommender Toxicity Es, 2025)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'platform audit / observational', note:'Audit study, not child-specific sample; developmental outcomes inferred not measured' },
+      { label:'Xu Mathemyths LLM Co-Creative Storytelling (2024) (Xu, 2024)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Lab setting; researcher-supervised; unclear transfer to unsupervised contexts' },
+      { label:'Brookings CUE AI Risks in Education Report (2025-2026)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'literature review / synthesis', note:'Synthesis report, not primary research; may overweight early negative findings; fast-moving field' },
+      { label:'MYME (Measuring Youth Media Exposure) (Rich, 2015)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Unknown', note:'Compliance demands; designed for traditional media, not AI interaction' },
+      { label:'Frontiers Scoping Review: Screen On = Development Off? (2024', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Systematic scoping review', note:'Review of weak underlying evidence base' },
+      { label:'Cincinnati Children\'s Infant Screen Exposure Study', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'Henrich et al. (2010) (Henrich, 2010)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'review', note:'' },
+      { label:'EU Kids Online 2020 (Smahel, 2020)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-national survey', note:'' },
+      { label:'Major et al. (2021) (Major, 2021)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Muralidharan et al. (2019) (Muralidharan, 2019)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'' },
+      { label:'VanLehn (2011) (VanLehn, 2011)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Cristia et al. (2017) -- OLPC Peru RCT (Cristia, 2017)', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT', note:'Rural Peru context; may not generalize to urban or high-resource settings' },
+      { label:'IES Early Learning Network -- Classroom Ecology', effect_direction:'positive', evidence_strength:'3/5', causal_confidence:'longitudinal observational', note:'Observational design limits causal claims; US-only sample' },
+      { label:'Bloom (1984) -- The 2 Sigma Problem (Bloom, 1984)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'comparative experimental', note:'Small-scale original studies; systematic review (Nintil) finds effect size may be smaller than 2 sigma in replications' },
+      { label:'Phone ban meta-analysis (2024) (Phone ban meta-analysis, 2024)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Yondr study conflicts of interest; inconsistent effects across SES and age groups' },
+      { label:'PBL effectiveness studies (California/Michigan)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental', note:'Pedagogical structure produces measurable gains without technology dependence' },
+      { label:'Cuban (2001) -- Oversold and Underused (Cuban, 2001)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Unknown', note:'Without institutional redesign, AI will be absorbed into existing practices like every prior technology' },
+      { label:'McDaniel & Radesky (2018) (McDaniel, 2018)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'Cross-sectional survey', note:'Cross-sectional; cannot establish causal direction; parent self-report' },
+      { label:'Christakis et al. (2009) (Christakis, 2009)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'Observational, population-based', note:'Cannot distinguish content types within audible TV' },
+      { label:'Barr (2019) (Barr, 2019)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Narrative review', note:'Review, not primary data; transfer deficit magnitude varies by task' },
+      { label:'Mollborn (2022) (Mollborn, 2022)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Survey, national data', note:'Cross-sectional; cannot isolate SES from correlated factors' },
+      { label:'JAMA Pediatrics screen use contexts meta-analysis (2024) (JAMA Pediatrics screen use con, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'Systematic review and meta-analysis', note:'Policy focus should shift from screen time limits to screen use quality' }
     ]
   },
   {
@@ -399,11 +471,75 @@ const SPHERES = [
       "Minecraft Education cluster-RCT demonstrates significant spatial reasoning gains (2024 — RCT N>500)",
       "AI Socratic dialogue strengthens reasoning and critical inference vs. passive instruction (RCT, 2024)"
     ],
-    studies_sample: [
-      { title: "STARS Trial: EndeavorRx for Pediatric ADHD", authors: "Kollins SH et al.", year: 2020, design: "RCT", effect: "positive", note: "N=348; FDA-cleared; significant attention improvement" },
-      { title: "Minecraft Spatial Thinking Cluster RCT", authors: "Stanford SCALE", year: 2024, design: "Cluster RCT", effect: "positive", note: "N>500; significant spatial reasoning gains" },
-      { title: "Fast-paced television and executive function", authors: "Lillard & Peterson", year: 2011, design: "RCT", effect: "negative", note: "9-min fast-paced TV impairs executive function vs. drawing" },
-      { title: "AI Socratic Tutoring vs. Direct Instruction", authors: "Stanford SCALE", year: 2024, design: "RCT", effect: "positive", note: "Socratic LLM dialogue strengthens reasoning transfer" }
+    studies_all: [
+      { label:'STARS Trial: EndeavorRx for Pediatric ADHD (Kollins et al., 2020)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT N=348', note:'FDA-cleared; significant attention improvement' },
+      { label:'Minecraft Spatial Thinking Cluster RCT (Stanford SCALE, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'Cluster RCT N>500', note:'Significant spatial reasoning gains' },
+      { label:'Fast-Paced Television and Executive Function (Lillard & Peterson, 2011)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'RCT', note:'9-min fast-paced TV impairs executive function vs. drawing' },
+      { label:'AI Socratic Tutoring vs. Direct Instruction (Stanford SCALE, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Socratic LLM dialogue strengthens reasoning transfer' },
+      { label:'Artificial Intelligence Enhances Children\'s Science Learning (Xu, 2024)', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT', note:'' },
+      { label:'Transmission Versus Truth, Imitation Versus Innovation: What (Yiu, 2024)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Unknown', note:'' },
+      { label:'The development of human causal learning and reasoning (Gopnik, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review', note:'' },
+      { label:'Christakis et al. (2004) (Christakis, 2004)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal correlational (NLSY)', note:'Multiverse analysis (McBee 2021) found only 19.6% of models significant; confounders not fully addressed' },
+      { label:'Myers et al. (2017) (Myers, 2017)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experiment', note:'' },
+      { label:'Kirkorian et al. (2009) (Kirkorian, 2009)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'within-subjects experiment', note:'' },
+      { label:'Anderson & Pempek (2005) (Anderson, 2005)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'review', note:'' },
+      { label:'Rasmussen et al. (2024) (Rasmussen, 2024)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'' },
+      { label:'McBee et al. (2021) (McBee, 2021)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'multiverse reanalysis', note:'Reanalysis only, not new data' },
+      { label:'Strouse & Samson (2021) (Strouse, 2021)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Aggregates lab studies; ecological validity unclear' },
+      { label:'Kearney & Levine (2019) (Kearney, 2019)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental (IV: broadcast reception)', note:'Long-term labor market effects imprecise; historical context differs from today' },
+      { label:'Mares & Pan (2013) (Mares, 2013)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Madigan et al. (2020) (Madigan, 2020)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review and meta-analysis', note:'Mostly correlational primary studies; cannot separate causation from selection' },
+      { label:'Lillard & Peterson (2011) (Lillard, 2011)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'randomized experiment', note:'Immediate effects only; unknown whether effects persist; single program comparison' },
+      { label:'Sugiyama et al. (2022) (Sugiyama, 2022)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal cohort', note:'Correlational; parental report measures' },
+      { label:'Christakis et al. (2018) (Christakis, 2018)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'review + animal experiment', note:'Animal model; stimulation protocol (flashing lights) does not resemble actual media; no direct human neural evidence' },
+      { label:'Sparrow et al. (2011) (Sparrow, 2011)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'Adult samples only; lab setting; does not address developmental trajectory' },
+      { label:'Danovitch (2019) (Danovitch, 2019)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'review', note:'Review covers sparse empirical base for young children specifically' },
+      { label:'Google effect meta-analysis (2024) (Google effect meta-analysis, 2024)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Most primary studies used adult samples' },
+      { label:'Dutch adolescent multitasking longitudinal (2021) (Dutch adolescent multitasking , 2021)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'Correlation-based despite longitudinal design; self-report measures' },
+      { label:'Cognitive Architecture of Digital Externalization (2023) (Cognitive Architecture of Digi, 2023)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'theoretical', note:'Framework, not empirical; child-specific application untested' },
+      { label:'Chaarani et al. (2022) (Chaarani, 2022)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'Cross-sectional; self-selection bias; no genre disaggregation' },
+      { label:'STARS Trial / EndeavorRx (2020) (Kollins, 2020)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Proof of concept that game-like adaptive systems can achieve therapeutic outcomes in children' },
+      { label:'Zulkifly et al. (2023) (Zulkifly, 2023)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Heterogeneous study designs; outcome measure inconsistency' },
+      { label:'Game-Based Learning Early Childhood Meta-analysis (2024) (Game-Based Learning Early Chil, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Transfer to specific academic domains is weak despite strong engagement effects' },
+      { label:'Paulus et al. (2018) (Paulus, 2018)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'systematic review', note:'Diagnostic criteria for IGD varied across studies; most studies cross-sectional' },
+      { label:'Lomas et al. (2013) (Lomas, 2013)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Jo et al. (2020) (Jo, 2020)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'Ward et al. (2017) (Ward, 2017)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'experimental', note:'Adult sample; replication meta-analysis found small but reliable effect; no child-specific data' },
+      { label:'Wilmer, Sherman & Chein (2017) (Wilmer, 2017)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'review', note:'Correlational; adult samples predominate; direction of causation unclear' },
+      { label:'Stevic et al. (2024) (Stevic, 2024)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal panel', note:'Parent-reported attention; no objective measures; single country' },
+      { label:'Ma et al. (2014) (Ma, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Heterogeneous comparison conditions; publication bias possible' },
+      { label:'Steenbergen-Hu & Cooper (2013) (Steenbergen-Hu, 2013)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Math-specific; may not generalize to other domains' },
+      { label:'Steenbergen-Hu & Cooper (2014) (Steenbergen-Hu, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'College population; different self-regulation capacity than children' },
+      { label:'Bloom (1984) (Bloom, 1984)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental', note:'Small original study; effect size may be inflated; recent re-analyses suggest lower estimates' },
+      { label:'Kapur (2014) productive failure meta-analysis (Kapur, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Consolidation phase requires skilled instruction; unclear if AI can do this' },
+      { label:'Koedinger & Aleven (2007) (Koedinger, 2007)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'No single optimal policy; requires real-time learner modeling' },
+      { label:'ASSISTments RCT (RAND/Rowan) (Rowan, 2016)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Smaller effects than classroom ITS; homework context limits generalization' },
+      { label:'Pane et al. (2014) (Pane, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental', note:'Implementation fidelity varied; second-year effects may reflect teacher adaptation' },
+      { label:'VanLehn (2006) (VanLehn, 2006)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'theoretical-framework', note:'Framework, not empirical test' },
+      { label:'Baker et al. (2008) gaming the system (Baker, 2008)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'observational', note:'Observational; hard to determine if gaming causes poor learning or reflects it' },
+      { label:'Xu & Warschauer (2020) (Xu, 2020)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'qualitative', note:'' },
+      { label:'Hiniker et al. (2021) (Hiniker, 2021)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'Small sample, single session, Seattle-area families only' },
+      { label:'Lovato & Piper (2019) (Lovato, 2019)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'observational', note:'' },
+      { label:'Xu et al. (2022) (Xu, 2022)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Kory Westlund et al. (2019) (Kory Westlund, 2019)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Turkle (2011) - Alone Together (Turkle, 2011)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal qualitative', note:'' },
+      { label:'NAO Robot ASD Efficacy Trial', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT', note:'' },
+      { label:'Xu & Warschauer (2022) (Xu, 2022)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Single session; engagement with humans still superior on key dimensions' },
+      { label:'Bastani et al. (2024) (Bastani, 2024)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'RCT', note:'Single subject (math); single school context (Turkey); short time horizon' },
+      { label:'Google DeepMind LearnLM RCT (2025) (Google DeepMind LearnLM RCT, 2025)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Small N; exploratory; industry-sponsored; short duration; supervised context' },
+      { label:'Stanford SCALE AI-Assisted Tutoring (2024) (Stanford SCALE AI-Assisted Tut, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'AI assists the tutor not the child directly; may not generalize to direct AI-child interaction' },
+      { label:'Druga et al. (2021) (Druga, 2021)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'pre-post observational', note:'No control group; self-selected participants; observational design' },
+      { label:'Children\'s Mental Models of AI Reasoning (IDC 2025)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'Cross-sectional; no intervention; US sample only' },
+      { label:'Chang Draw-a-Picture AI Perception (2024) (Chang, 2024)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional qualitative', note:'Small qualitative study; single cultural context; no behavioral outcomes' },
+      { label:'Xu Mathemyths LLM Co-Creative Storytelling (2024) (Xu, 2024)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Lab setting; researcher-supervised; unclear transfer to unsupervised contexts' },
+      { label:'Brookings CUE AI Risks in Education Report (2025-2026)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'literature review / synthesis', note:'Synthesis report, not primary research; may overweight early negative findings; fast-moving field' },
+      { label:'Cincinnati Children\'s Infant Screen Exposure Study', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'UNC Social Media and Adolescent Brain Development Study', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'Cristia et al. (2017) -- OLPC Peru RCT (Cristia, 2017)', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT', note:'Rural Peru context; may not generalize to urban or high-resource settings' },
+      { label:'Phone ban meta-analysis (2024) (Phone ban meta-analysis, 2024)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Yondr study conflicts of interest; inconsistent effects across SES and age groups' },
+      { label:'Christakis et al. (2009) (Christakis, 2009)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'Observational, population-based', note:'Cannot distinguish content types within audible TV' },
+      { label:'Barr (2019) (Barr, 2019)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Narrative review', note:'Review, not primary data; transfer deficit magnitude varies by task' },
+      { label:'JAMA Pediatrics screen use contexts meta-analysis (2024) (JAMA Pediatrics screen use con, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'Systematic review and meta-analysis', note:'Policy focus should shift from screen time limits to screen use quality' }
     ]
   },
   {
@@ -429,11 +565,25 @@ const SPHERES = [
       "AI-powered formative coaching promotes structured reflection cycles and strategic self-regulation",
       "LLM explanations provide externalized metacognitive models students can internalize over time"
     ],
-    studies_sample: [
-      { title: "Does Feedback on Talk Time Increase Student Engagement?", authors: "Stanford SCALE", year: 2024, design: "RCT", effect: "positive", note: "AI-generated talk-time feedback improves self-monitoring" },
-      { title: "M-Powering Teachers: NLP Feedback in 1:1 Instruction", authors: "Stanford SCALE", year: 2023, design: "RCT", effect: "positive", note: "NLP feedback improves metacognitive coaching quality" },
-      { title: "Effective Personalized AI Tutors via LLM-Guided RL", authors: "Stanford SCALE", year: 2026, design: "RCT", effect: "positive", note: "Personalized AI promotes self-regulated strategy use" },
-      { title: "Alexa, let me ask you something: AI voice and source monitoring", authors: "Oranc & Kuntay", year: 2021, design: "Cross-sectional", effect: "mixed", note: "Children treat AI voice as authority; source monitoring at risk" }
+    studies_all: [
+      { label:'Does Feedback on Talk Time Increase Student Engagement? (Stanford SCALE, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'AI-generated talk-time feedback improves self-monitoring' },
+      { label:'M-Powering Teachers: NLP Feedback in 1:1 Instruction (Stanford SCALE, 2023)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'NLP feedback improves metacognitive coaching quality' },
+      { label:'Effective Personalized AI Tutors via LLM-Guided RL (Stanford SCALE, 2026)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Personalized AI promotes self-regulated strategy use' },
+      { label:'Alexa, Let Me Ask You Something: AI Voice and Source Monitoring (Oranc & Kuntay, 2021)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Cross-sectional', note:'Children treat AI voice as authority; source monitoring at risk' },
+      { label:'Strouse & Samson (2021) (Strouse, 2021)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Aggregates lab studies; ecological validity unclear' },
+      { label:'Christakis et al. (2018) (Christakis, 2018)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'review + animal experiment', note:'Animal model; stimulation protocol (flashing lights) does not resemble actual media; no direct human neural evidence' },
+      { label:'Sparrow et al. (2011) (Sparrow, 2011)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'Adult samples only; lab setting; does not address developmental trajectory' },
+      { label:'Danovitch (2019) (Danovitch, 2019)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'review', note:'Review covers sparse empirical base for young children specifically' },
+      { label:'Google effect meta-analysis (2024) (Google effect meta-analysis, 2024)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Most primary studies used adult samples' },
+      { label:'Children\'s credibility evaluation development', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'Lab settings may overestimate real-world credibility checking' },
+      { label:'Paulus et al. (2018) (Paulus, 2018)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'systematic review', note:'Diagnostic criteria for IGD varied across studies; most studies cross-sectional' },
+      { label:'Jo et al. (2020) (Jo, 2020)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'Oranc & Kuntay (2021) (Oranc, 2021)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'observational', note:'' },
+      { label:'Druga et al. (2019) (Druga, 2019)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'design-based research', note:'' },
+      { label:'Bastani et al. (2024) (Bastani, 2024)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'RCT', note:'Single subject (math); single school context (Turkey); short time horizon' },
+      { label:'Druga et al. (2021) (Druga, 2021)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'pre-post observational', note:'No control group; self-selected participants; observational design' },
+      { label:'Children\'s Mental Models of AI Reasoning (IDC 2025)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'Cross-sectional; no intervention; US sample only' },
+      { label:'Brookings CUE AI Risks in Education Report (2025-2026)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'literature review / synthesis', note:'Synthesis report, not primary research; may overweight early negative findings; fast-moving field' }
     ]
   },
   {
@@ -459,11 +609,44 @@ const SPHERES = [
       "Conversational AI agents increase intrinsic motivation via adaptive challenge-skill balance",
       "AI emotion coaching apps (e.g., PACEE) support parental co-regulation of children's emotional learning (2025)"
     ],
-    studies_sample: [
-      { title: "A large-scale test of the Goldilocks hypothesis on digital screen time", authors: "Przybylski & Weinstein", year: 2017, design: "Cross-sectional", effect: "mixed", note: "N=120k; moderate use beneficial, heavy use harmful (curvilinear)" },
-      { title: "Social media use and adolescent mental health: systematic review", authors: "Tølbøll", year: 2025, design: "Systematic review", effect: "negative", note: "Consistent association between SM algorithms and depressive symptoms" },
-      { title: "PACEE: Parent-AI Collaboration for Emotion Education", authors: "Stanford SCALE", year: 2025, design: "Implementation study", effect: "positive", note: "AI scaffolds parental emotion coaching with children" },
-      { title: "Does Feedback on Talk Time Increase Student Engagement?", authors: "Stanford SCALE", year: 2024, design: "RCT", effect: "positive", note: "AI feedback increases student engagement and motivation" }
+    studies_all: [
+      { label:'A Large-Scale Test of the Goldilocks Hypothesis (Przybylski & Weinstein, 2017)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Cross-sectional N=120,115', note:'Moderate use beneficial, heavy use harmful (curvilinear)' },
+      { label:'Social Media Use and Adolescent Mental Health (Tølbøll, 2025)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'Systematic review', note:'Consistent association between SM algorithms and depressive symptoms' },
+      { label:'PACEE: Parent-AI Collaboration for Emotion Education (Stanford SCALE, 2025)', effect_direction:'positive', evidence_strength:'3/5', causal_confidence:'Implementation study', note:'AI scaffolds parental emotion coaching with children' },
+      { label:'Does Feedback on Talk Time Increase Student Engagement? (Stanford SCALE, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'AI feedback increases student engagement and motivation' },
+      { label:'Anderson & Pempek (2005) (Anderson, 2005)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'review', note:'' },
+      { label:'Mares & Woodard (2007) (Mares, 2007)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Kearney & Levine (2019) (Kearney, 2019)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental (IV: broadcast reception)', note:'Long-term labor market effects imprecise; historical context differs from today' },
+      { label:'Lillard & Peterson (2011) (Lillard, 2011)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'randomized experiment', note:'Immediate effects only; unknown whether effects persist; single program comparison' },
+      { label:'Sugiyama et al. (2022) (Sugiyama, 2022)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal cohort', note:'Correlational; parental report measures' },
+      { label:'Children\'s credibility evaluation development', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'Lab settings may overestimate real-world credibility checking' },
+      { label:'Game-Based Learning Early Childhood Meta-analysis (2024) (Game-Based Learning Early Chil, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Transfer to specific academic domains is weak despite strong engagement effects' },
+      { label:'Gentile et al. (2009) (Gentile, 2009)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'longitudinal + experimental', note:'' },
+      { label:'Paulus et al. (2018) (Paulus, 2018)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'systematic review', note:'Diagnostic criteria for IGD varied across studies; most studies cross-sectional' },
+      { label:'Minecraft Spatial Thinking Cluster RCT (2024) (Minecraft Spatial Thinking Clu, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'cluster RCT', note:'Spatial reasoning benefits require 3D construction mechanics; limited transfer to other domains' },
+      { label:'Li et al. (2023) (Li, 2023)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Przybylski & Weinstein (2017) (Przybylski, 2017)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional survey', note:'Cross-sectional; self-reported screen time; thresholds may not transfer to AI' },
+      { label:'Orben & Przybylski (2019) (Orben, 2019)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'cross-sectional (SCA)', note:'' },
+      { label:'Beyens et al. (2021) (Beyens, 2021)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'experience sampling', note:'' },
+      { label:'Tølbøll (2025) (Tølbøll, 2025)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'umbrella review', note:'' },
+      { label:'Lee et al. (2026) (Lee, 2026)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Body Image & Social Media Reviews (2022-2024)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'systematic reviews', note:'' },
+      { label:'Kapur (2014) productive failure meta-analysis (Kapur, 2014)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Consolidation phase requires skilled instruction; unclear if AI can do this' },
+      { label:'Turkle (2011) - Alone Together (Turkle, 2011)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal qualitative', note:'' },
+      { label:'Kahn et al. (2012) (Kahn, 2012)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental with interview', note:'' },
+      { label:'Xu & Warschauer (2022) (Xu, 2022)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Single session; engagement with humans still superior on key dimensions' },
+      { label:'Bastani et al. (2024) (Bastani, 2024)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'RCT', note:'Single subject (math); single school context (Turkey); short time horizon' },
+      { label:'Google DeepMind LearnLM RCT (2025) (Google DeepMind LearnLM RCT, 2025)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'Small N; exploratory; industry-sponsored; short duration; supervised context' },
+      { label:'Stanford SCALE AI-Assisted Tutoring (2024) (Stanford SCALE AI-Assisted Tut, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'AI assists the tutor not the child directly; may not generalize to direct AI-child interaction' },
+      { label:'Snapchat My AI Adolescent Study (2025) (Snapchat My AI Adolescent Stud, 2025)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional survey', note:'Cross-sectional; self-report; no developmental outcome measurement; single platform' },
+      { label:'Children\'s Mental Models of AI Reasoning (IDC 2025)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'Cross-sectional; no intervention; US sample only' },
+      { label:'TikTok Recommender Toxicity Escalation (2025) (TikTok Recommender Toxicity Es, 2025)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'platform audit / observational', note:'Audit study, not child-specific sample; developmental outcomes inferred not measured' },
+      { label:'Companion Robot Home Deployment (2025) (Companion Robot Home Deploymen, 2025)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'retrospective qualitative', note:'Very small N; retrospective; no developmental outcome measures; self-selected families' },
+      { label:'Xu Mathemyths LLM Co-Creative Storytelling (2024) (Xu, 2024)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Lab setting; researcher-supervised; unclear transfer to unsupervised contexts' },
+      { label:'Frontiers Scoping Review: Screen On = Development Off? (2024', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Systematic scoping review', note:'Review of weak underlying evidence base' },
+      { label:'Cincinnati Children\'s Infant Screen Exposure Study', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'Henrich et al. (2010) (Henrich, 2010)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'review', note:'' },
+      { label:'Digital parenting and children\'s digital wellbeing meta-anal', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'Three-level meta-analysis', note:'Heterogeneity in how mediation types are measured across studies' }
     ]
   },
   {
@@ -489,11 +672,51 @@ const SPHERES = [
       "AI-assisted project-based learning (PBL) enhances collaborative skills and peer interdependence (RCT, 2021)",
       "AI social skills training shows measurable benefits for children with ASD (NAO Robot RCT, 2024)"
     ],
-    studies_sample: [
-      { title: "Social media effects on adolescent social comparison: person-specific susceptibility", authors: "Beyens et al.", year: 2021, design: "Longitudinal RCT", effect: "mixed", note: "N=2,155; individual susceptibility moderates negative effects" },
-      { title: "Tølbøll: Social media use and adolescent mental health review", authors: "Tølbøll", year: 2025, design: "Systematic review", effect: "negative", note: "Consistent negative psychosocial effects of SM algorithms" },
-      { title: "PBL Effectiveness in K-12 (California & Michigan)", authors: "de Vivo", year: 2021, design: "QE / RCT", effect: "positive", note: "AI-assisted PBL improves collaboration and social skills" },
-      { title: "A Meta-Analysis of LLM Effects on Socialization", authors: "Stanford SCALE", year: 2025, design: "Meta-analysis + RCT", effect: "mixed", note: "Mixed socialization effects; positive for structured collaboration" }
+    studies_all: [
+      { label:'Social Media Effects: Person-Specific Susceptibility (Beyens et al., 2021)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'Longitudinal RCT N=2,155', note:'Individual susceptibility moderates negative social comparison effects' },
+      { label:'Social Media Use and Adolescent Mental Health (Tølbøll, 2025)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'Systematic review', note:'Consistent negative psychosocial effects of SM algorithms' },
+      { label:'PBL Effectiveness in K-12 (de Vivo, 2021)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'QE / RCT', note:'AI-assisted PBL improves collaboration and social skills' },
+      { label:'A Meta-Analysis of LLM Effects on Socialization (Stanford SCALE, 2025)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'Meta-analysis + RCT', note:'Mixed socialization effects; positive for structured collaboration' },
+      { label:'Large AI Models are cultural and social technologies (Gopnik, 2025)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'theoretical', note:'' },
+      { label:'Mares & Woodard (2007) (Mares, 2007)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Mares & Pan (2013) (Mares, 2013)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'' },
+      { label:'Sugiyama et al. (2022) (Sugiyama, 2022)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal cohort', note:'Correlational; parental report measures' },
+      { label:'Game-Based Learning Early Childhood Meta-analysis (2024) (Game-Based Learning Early Chil, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Transfer to specific academic domains is weak despite strong engagement effects' },
+      { label:'Gentile et al. (2009) (Gentile, 2009)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'longitudinal + experimental', note:'' },
+      { label:'Li et al. (2023) (Li, 2023)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'McDaniel (2019) (McDaniel, 2019)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'survey + observational', note:'Self-report; cross-sectional; direction of effect debatable' },
+      { label:'Munzer et al. (2022) (Munzer, 2022)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'Correlational time-use data; cannot fully rule out confounds' },
+      { label:'Davis & Weinstein (2020) (Davis, 2020)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'theoretical/review', note:'Theoretical; limited empirical testing of context collapse effects on identity outcomes' },
+      { label:'Beyens et al. (2021) (Beyens, 2021)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'experience sampling', note:'' },
+      { label:'Nesi & Prinstein (2018) (Nesi, 2018)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'theoretical review', note:'' },
+      { label:'Hilbert et al. (2025) (Hilbert, 2025)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'platform audit (sock puppet)', note:'' },
+      { label:'Pouwels et al. (2025) (Pouwels, 2025)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'Tølbøll (2025) (Tølbøll, 2025)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'umbrella review', note:'' },
+      { label:'Body Image & Social Media Reviews (2022-2024)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'systematic reviews', note:'' },
+      { label:'Cyberbullying Within-Person Birth Cohort (2025) (Cyberbullying Within-Person Bi, 2025)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal (within-person)', note:'' },
+      { label:'Xu & Warschauer (2020) (Xu, 2020)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'qualitative', note:'' },
+      { label:'Hiniker et al. (2021) (Hiniker, 2021)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'Small sample, single session, Seattle-area families only' },
+      { label:'Oranc & Kuntay (2021) (Oranc, 2021)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'observational', note:'' },
+      { label:'Kory Westlund et al. (2019) (Kory Westlund, 2019)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Druga et al. (2019) (Druga, 2019)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'design-based research', note:'' },
+      { label:'Belpaeme et al. (2018) (Belpaeme, 2018)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review', note:'' },
+      { label:'Vollmer et al. (2018) (Vollmer, 2018)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Turkle (2011) - Alone Together (Turkle, 2011)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal qualitative', note:'' },
+      { label:'Kahn et al. (2012) (Kahn, 2012)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'experimental with interview', note:'' },
+      { label:'Xu & Warschauer (2022) (Xu, 2022)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Single session; engagement with humans still superior on key dimensions' },
+      { label:'Druga et al. (2021) (Druga, 2021)', effect_direction:'positive', evidence_strength:'2/5', causal_confidence:'pre-post observational', note:'No control group; self-selected participants; observational design' },
+      { label:'Snapchat My AI Adolescent Study (2025) (Snapchat My AI Adolescent Stud, 2025)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'cross-sectional survey', note:'Cross-sectional; self-report; no developmental outcome measurement; single platform' },
+      { label:'TikTok Recommender Toxicity Escalation (2025) (TikTok Recommender Toxicity Es, 2025)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'platform audit / observational', note:'Audit study, not child-specific sample; developmental outcomes inferred not measured' },
+      { label:'Companion Robot Home Deployment (2025) (Companion Robot Home Deploymen, 2025)', effect_direction:'mixed', evidence_strength:'1/5', causal_confidence:'retrospective qualitative', note:'Very small N; retrospective; no developmental outcome measures; self-selected families' },
+      { label:'UNC Social Media and Adolescent Brain Development Study', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'Henrich et al. (2010) (Henrich, 2010)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'review', note:'' },
+      { label:'Livingstone & Helsper (2008) (Livingstone, 2008)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'national survey', note:'' },
+      { label:'IES Early Learning Network -- Classroom Ecology', effect_direction:'positive', evidence_strength:'3/5', causal_confidence:'longitudinal observational', note:'Observational design limits causal claims; US-only sample' },
+      { label:'Phone ban meta-analysis (2024) (Phone ban meta-analysis, 2024)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'meta-analysis', note:'Yondr study conflicts of interest; inconsistent effects across SES and age groups' },
+      { label:'PBL effectiveness studies (California/Michigan)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'quasi-experimental', note:'Pedagogical structure produces measurable gains without technology dependence' },
+      { label:'Digital parenting and children\'s digital wellbeing meta-anal', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'Three-level meta-analysis', note:'Heterogeneity in how mediation types are measured across studies' },
+      { label:'McDaniel & Radesky (2018) (McDaniel, 2018)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'Cross-sectional survey', note:'Cross-sectional; cannot establish causal direction; parent self-report' },
+      { label:'JAMA Pediatrics screen use contexts meta-analysis (2024) (JAMA Pediatrics screen use con, 2024)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'Systematic review and meta-analysis', note:'Policy focus should shift from screen time limits to screen use quality' }
     ]
   },
   {
@@ -518,11 +741,25 @@ const SPHERES = [
       "Generative AI as creative co-pilot expands idea exploration, fluency, and creative risk-taking",
       "AI storytelling partners increase narrative elaboration and imaginative complexity in early childhood"
     ],
-    studies_sample: [
-      { title: "MusicScaffold: Bridging Machine Efficiency and Human Growth in Adolescent Creativity", authors: "Stanford SCALE", year: 2025, design: "RCT", effect: "positive", note: "AI scaffolding improves musical creativity without replacing student voice" },
-      { title: "Mentigo: AI Agent for Creative Problem Solving", authors: "Stanford SCALE", year: 2024, design: "Product RCT", effect: "positive", note: "AI mentoring enhances creative problem-solving in students" },
-      { title: "RoboBuddy: LLM-Powered Social Robots for Storytelling", authors: "Stanford SCALE", year: 2025, design: "Implementation study", effect: "positive", note: "AI robot partners increase narrative elaboration in early childhood" },
-      { title: "Mathemyths: LLMs for Mathematical Language via Storytelling", authors: "Stanford SCALE", year: 2024, design: "Product study", effect: "positive", note: "AI storytelling partner extends creative mathematical language use" }
+    studies_all: [
+      { label:'MusicScaffold: AI in Adolescent Creativity (Stanford SCALE, 2025)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'RCT', note:'AI scaffolding improves musical creativity without replacing student voice' },
+      { label:'Mentigo: AI Agent for Creative Problem Solving (Stanford SCALE, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'Product RCT', note:'AI mentoring enhances creative problem-solving in students' },
+      { label:'RoboBuddy: LLM-Powered Social Robots for Storytelling (Stanford SCALE, 2025)', effect_direction:'positive', evidence_strength:'3/5', causal_confidence:'Implementation study', note:'AI robot partners increase narrative elaboration in early childhood' },
+      { label:'Mathemyths: LLMs for Mathematical Language via Storytelling (Stanford SCALE, 2024)', effect_direction:'positive', evidence_strength:'3/5', causal_confidence:'Product study', note:'AI storytelling partner extends creative mathematical language use' },
+      { label:'Transmission Versus Truth, Imitation Versus Innovation: What (Yiu, 2024)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Unknown', note:'' },
+      { label:'Rasmussen et al. (2024) (Rasmussen, 2024)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'cross-sectional', note:'' },
+      { label:'Sugiyama et al. (2022) (Sugiyama, 2022)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal cohort', note:'Correlational; parental report measures' },
+      { label:'Lomas et al. (2013) (Lomas, 2013)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Minecraft Spatial Thinking Cluster RCT (2024) (Minecraft Spatial Thinking Clu, 2024)', effect_direction:'positive', evidence_strength:'5/5', causal_confidence:'cluster RCT', note:'Spatial reasoning benefits require 3D construction mechanics; limited transfer to other domains' },
+      { label:'Jo et al. (2020) (Jo, 2020)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'' },
+      { label:'McDaniel (2019) (McDaniel, 2019)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'survey + observational', note:'Self-report; cross-sectional; direction of effect debatable' },
+      { label:'Munzer et al. (2022) (Munzer, 2022)', effect_direction:'negative', evidence_strength:'3/5', causal_confidence:'longitudinal', note:'Correlational time-use data; cannot fully rule out confounds' },
+      { label:'Davis & Weinstein (2020) (Davis, 2020)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'theoretical/review', note:'Theoretical; limited empirical testing of context collapse effects on identity outcomes' },
+      { label:'Kory Westlund et al. (2019) (Kory Westlund, 2019)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'' },
+      { label:'Bastani et al. (2024) (Bastani, 2024)', effect_direction:'negative', evidence_strength:'5/5', causal_confidence:'RCT', note:'Single subject (math); single school context (Turkey); short time horizon' },
+      { label:'Xu Mathemyths LLM Co-Creative Storytelling (2024) (Xu, 2024)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'experimental', note:'Lab setting; researcher-supervised; unclear transfer to unsupervised contexts' },
+      { label:'Brookings CUE AI Risks in Education Report (2025-2026)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'literature review / synthesis', note:'Synthesis report, not primary research; may overweight early negative findings; fast-moving field' },
+      { label:'Cuban (2001) -- Oversold and Underused (Cuban, 2001)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Unknown', note:'Without institutional redesign, AI will be absorbed into existing practices like every prior technology' }
     ]
   },
   {
@@ -547,11 +784,18 @@ const SPHERES = [
       "AI visual scaffolding in serious games supports fine motor coordination and visual-motor integration (QE, 2026)",
       "AR/AI-augmented play environments show early promise for spatial-motor skill integration in school settings"
     ],
-    studies_sample: [
-      { title: "AI-Based Verbal and Visual Scaffolding in a Serious Game: Effects on Learning and Motor Skills", authors: "Stanford SCALE", year: 2026, design: "Quasi-experimental", effect: "positive", note: "AI scaffolding supports fine motor-cognitive coordination" },
-      { title: "Screen Time and Behavior Problems Meta-Analysis", authors: "Mollborn et al.", year: 2022, design: "Meta-analysis", effect: "negative", note: "N>3000; heavy screen exposure associated with motor delays" },
-      { title: "Screen On = Development Off? Scoping Review", authors: "Frontiers", year: 2024, design: "Scoping review", effect: "negative", note: "Screen displacement of active play impairs sensorimotor milestones" },
-      { title: "MindScratch: AI Visual Programming for Classroom Motor Learning", authors: "Stanford SCALE", year: 2024, design: "Product study", effect: "mixed", note: "AI visual tools support fine motor engagement in coding tasks" }
+    studies_all: [
+      { label:'AI Scaffolding in a Serious Game: Motor Skills (Stanford SCALE, 2026)', effect_direction:'positive', evidence_strength:'4/5', causal_confidence:'Quasi-experimental', note:'AI scaffolding supports fine motor-cognitive coordination' },
+      { label:'Screen Time and Behavior Problems Meta-Analysis (Mollborn et al., 2022)', effect_direction:'negative', evidence_strength:'4/5', causal_confidence:'Meta-analysis N>3,000', note:'Heavy screen exposure associated with motor delays' },
+      { label:'Screen On = Development Off? Scoping Review (Frontiers, 2024)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'Scoping review', note:'Screen displacement of active play impairs sensorimotor milestones' },
+      { label:'MindScratch: AI Visual Programming for Motor Learning (Stanford SCALE, 2024)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'Product study', note:'AI visual tools support fine motor engagement in coding tasks' },
+      { label:'Anderson & Pempek (2005) (Anderson, 2005)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'review', note:'' },
+      { label:'Davis & Weinstein (2020) (Davis, 2020)', effect_direction:'negative', evidence_strength:'2/5', causal_confidence:'theoretical/review', note:'Theoretical; limited empirical testing of context collapse effects on identity outcomes' },
+      { label:'Belpaeme et al. (2018) (Belpaeme, 2018)', effect_direction:'mixed', evidence_strength:'4/5', causal_confidence:'systematic review', note:'' },
+      { label:'NAO Robot ASD Efficacy Trial', effect_direction:'mixed', evidence_strength:'5/5', causal_confidence:'RCT', note:'' },
+      { label:'Frontiers Scoping Review: Screen On = Development Off? (2024', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Systematic scoping review', note:'Review of weak underlying evidence base' },
+      { label:'Mollborn et al. (2022) (Mollborn, 2022)', effect_direction:'mixed', evidence_strength:'3/5', causal_confidence:'longitudinal survey analysis', note:'' },
+      { label:'Mollborn (2022) (Mollborn, 2022)', effect_direction:'mixed', evidence_strength:'2/5', causal_confidence:'Survey, national data', note:'Cross-sectional; cannot isolate SES from correlated factors' }
     ]
   }
 ];
@@ -624,7 +868,7 @@ SPHERES.forEach(s => {
   const dotR = 50;
   for (let j = 0; j < dotCount; j++) {
     const a = s.angle + (2 * Math.PI * j / dotCount);
-    const st = s.studies_sample[j % (s.studies_sample.length || 1)];
+    const st = s.studies_all[j % (s.studies_all.length || 1)];
     const col = st
       ? (st.effect_direction === 'positive' ? '#2563eb'
         : st.effect_direction === 'negative' ? '#dc2626' : '#c8c0b0')
@@ -806,9 +1050,9 @@ function showPanel(s) {
       ${s.top_benefits.map(b => `<div class="mech-pill b">${b}</div>`).join('')}</div>`;
   }
 
-  if (s.studies_sample.length) {
-    html += `<div class="p-sec">Studies (sample)</div>`;
-    s.studies_sample.forEach(st => {
+  if (s.studies_all.length) {
+    html += `<div class="p-sec">Studies — n=${s.studies_all.length}</div>`;
+    s.studies_all.forEach(st => {
       html += `<div class="st-item">
         <div class="st-dot" style="background:${dirCol(st.effect_direction)}"></div>
         <div>
