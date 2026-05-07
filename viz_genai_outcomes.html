@@ -285,8 +285,9 @@ html,body{width:100%;height:100%;background:var(--paper);color:var(--ink);font-f
   <div id="safety-canvas">
     <div id="safety-legend">
       <div class="leg-item"><div class="leg-dot" style="background:#2563eb"></div>Academic Research</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#d97706"></div>Civil Society &amp; Industry</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#059669"></div>Policy &amp; Governance</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#d97706"></div>Civil Society &amp; NGOs</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#059669"></div>Policy, Governance &amp; Frameworks</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#7c3aed"></div>Benchmarks &amp; Evaluation</div>
     </div>
   </div>
   <div id="safety-panel">
@@ -831,98 +832,240 @@ function showPanel(s) {
 // ═══════════════════════════════════════════════════════
 
 const CLUSTERS = {
-  academic:  { id:'academic',  label:'Academic Research',      color:'#2563eb', cx_f:.22, cy_f:.42 },
-  civil:     { id:'civil',     label:'Civil Society & Industry',color:'#d97706', cx_f:.78, cy_f:.68 },
-  policy:    { id:'policy',    label:'Policy & Governance',    color:'#059669', cx_f:.75, cy_f:.32 },
+  academic: { id:'academic', label:'Academic Research',        color:'#2563eb', cx_f:.20, cy_f:.38 },
+  civil:    { id:'civil',    label:'Civil Society & NGOs',     color:'#d97706', cx_f:.78, cy_f:.65 },
+  policy:   { id:'policy',   label:'Policy, Governance & Frameworks', color:'#059669', cx_f:.73, cy_f:.28 },
+  bench:    { id:'bench',    label:'Benchmarks & Evaluation',  color:'#7c3aed', cx_f:.27, cy_f:.70 },
 };
 
 const SNODES = [
+
   // ── ACADEMIC RESEARCH ──────────────────────────────────────────────────────
   { id:'a1', cluster:'academic', label:'Stanford HAI / SCALE', size:22,
-    full:'Stanford Human-Centered AI — SCALE Lab',
-    desc:'Stanford SCALE: 1,267 peer-reviewed studies on AI tool use in K-12 education. Stanford HAI researchers co-authored policy evidence for EU AI Act and UNESCO AI frameworks. Largest systematic corpus on child-facing GenAI outcomes; basis for KORA sphere counts.',
-    out:{ p1:'SCALE corpus cited in EU AI Act risk assessments', p2:'Stanford evidence informs UNESCO AI competency framework', c4:'LearnLM RCT (2025) evaluated by SCALE lab' }},
+    full:'Stanford Human-Centered AI — SCALE Lab + Childhood & AI Lab (2025)',
+    desc:'Stanford SCALE: 1,267 peer-reviewed studies on GenAI in K-12 (2023–2026) — the largest systematic corpus on child-facing AI outcomes. The Childhood & AI Lab (launched 2025) is the first dedicated research network studying AI\'s cognitive and developmental effects on children. Key researchers: Jeff Hancock (Social Media Lab), Emma Brunskill (RL), Anna Lembke (dopamine/dependency).',
+    out:{ p1:'SCALE corpus cited in EU AI Act impact assessment', p3:'Stanford evidence informs UNESCO AI Competency Framework', b1:'SCALE grounds KORA sphere counts and evidence scoring', b3:'Stanford Brainstorm Lab contributes to Safe-Child-LLM benchmark design' }},
 
-  { id:'a2', cluster:'academic', label:'Oxford Internet Institute', size:19,
+  { id:'a2', cluster:'academic', label:'Oxford Internet Institute', size:20,
     full:'Oxford Internet Institute — Kids and Screens Programme',
-    desc:'OII researchers (Przybylski, Weinstein, Orben) produced the largest population-level evidence on digital screen time and child wellbeing, including N=120,115 study. OII evidence directly cited in UK Children\'s Safety Codes and EU AI Act child wellbeing provisions.',
-    out:{ p3:'OII Kids & Screens research cited in Children\'s Safety Codes (2024)', p1:'Przybylski lab evidence used in AI Act child wellbeing provisions', p2:'OII contributes to UNESCO screen time evidence synthesis' }},
+    desc:'OII produces the largest population-level evidence on digital screen time and child wellbeing. Andrew Przybylski and Amy Orben\'s N=120,115 study (2017) established the Goldilocks hypothesis. The Kids and Screens programme directly informs UK and EU child AI safety regulation. Victoria Nash leads digital policy research.',
+    out:{ p2:'OII evidence cited in UK Children\'s Safety Codes (2024)', p1:'Przybylski evidence used in EU AI Act child wellbeing provisions', p3:'OII contributes to UNESCO screen time evidence synthesis' }},
 
-  { id:'a3', cluster:'academic', label:'UNICEF Innocenti', size:17,
-    full:'UNICEF Office of Research — Innocenti',
-    desc:'Published "Policy Guidance on AI for Children" (2021) co-developed with UNICEF Supply Division and academic partners. 5 requirements for child-safe AI. Cited by EU AI Act impact assessment and UNESCO AI ethics framework. Directional influence on DSA minor provisions.',
-    out:{ p1:'UNICEF policy briefs cited in EU AI Act impact assessment', p2:'Co-authored UNESCO Policy Guidance on AI for Children (2021)', p3:'Innocenti evidence informs UK Ofcom Children\'s Safety framework' }},
+  { id:'a3', cluster:'academic', label:'Digital Futures for Children', size:18,
+    full:'Digital Futures for Children — LSE & 5Rights Foundation Joint Centre',
+    desc:'Joint research centre (LSE + 5Rights Foundation, est. 2023). Director: Prof. Sonia Livingstone (LSE), Chair: Baroness Beeban Kidron. Produces rights-based evidence on children\'s digital experiences across 30+ countries via EU Kids Online. Directly feeds into UK OSA enforcement, EU DSA Article 34, and UNESCO guidance.',
+    out:{ p2:'DFC evidence cited in UK Children\'s Safety Codes', p1:'EU Kids Online data cited in EU AI Act impact assessment', c3:'5Rights co-founded the DFC research centre' }},
 
-  { id:'a4', cluster:'academic', label:'MIT Media Lab', size:13,
+  { id:'a4', cluster:'academic', label:'Oxford CCAI Design Lab', size:14,
+    full:'Oxford Child-Centred AI (CCAI) Design Lab',
+    desc:'Oxford research lab focused on child-centred AI design: digital autonomy, age-appropriate AI systems, data safety for young people. Produces design guidelines adopted by major tech platforms and cited in Council of Europe AI education programmes.',
+    out:{ p5:'Oxford CCAI contributes to Council of Europe AI&ED programme', p1:'CCAI design principles cited in EU AI Act guidelines' }},
+
+  { id:'a5', cluster:'academic', label:'Alan Turing Institute', size:16,
+    full:'The Alan Turing Institute — Children and AI Programme',
+    desc:'UK national institute for data science and AI. Children and AI research programme studies generative AI impact on children, legal frameworks mapping, and rights-based AI design. Co-organised the Children\'s AI Summit (Feb 2025, 150+ children). Collaborators: UNICEF, LEGO, Council of Europe, Children\'s Parliament.',
+    out:{ p5:'Turing co-authored Council of Europe AI&ED programme', p2:'Turing evidence informs UK Ofcom Children\'s Safety Codes', p3:'Turing contributes to UNESCO AI Ethics framework' }},
+
+  { id:'a6', cluster:'academic', label:'MIT Media Lab', size:14,
     full:'MIT Media Lab — Personal Robots Group & Learning Sciences',
-    desc:'Cynthia Breazeal\'s group (social robots for learning), Scratch programming environment (150M+ users), and explorations of creative AI for children. MIT researchers provide key mechanistic evidence on how AI design affects child agency and creative development.',
-    out:{ p2:'MIT Scratch underpins UNESCO digital literacy competency framework', a1:'MIT robot studies appear in Stanford SCALE corpus' }},
+    desc:'Laura E. Schulz (Early Childhood Cognition Lab Director, Expert Validator KORA v1). Scratch programming environment (150M+ users). Open-source AI ethics curriculum for middle school. Research on social robots and child agency shapes understanding of how AI design affects creative development.',
+    out:{ p3:'Scratch underpins UNESCO digital literacy competency framework', a1:'MIT studies appear in Stanford SCALE corpus' }},
 
-  { id:'a5', cluster:'academic', label:'LSE Media & Communications', size:12,
-    full:'LSE — Department of Media and Communications / EU Kids Online',
-    desc:'EU Kids Online network (30+ countries) provides pan-European evidence on children\'s digital experiences. Sonia Livingstone leads research on digital rights and child wellbeing. Evidence base for DSA Article 34 systemic risk assessments for minors.',
-    out:{ p1:'EU KidsOnline data informs EU AI Act child provision evidence base', p4:'LSE evidence informs OECD digital education guidelines' }},
+  { id:'a7', cluster:'academic', label:'Stanford Brainstorm Lab', size:13,
+    full:'Stanford Brainstorm Lab for Mental Health Innovation',
+    desc:'Dr. Nina Vasan directs research on AI companions, chatbots, and mental health impacts on youth. 2025 study documented unsafe responses by AI companions to teen mental health crises across 7 major platforms — now cited in US congressional testimony and Common Sense Media AI Safety Institute standards.',
+    out:{ b3:'Brainstorm findings shape Safe-Child-LLM benchmark criteria', c1:'Brainstorm Lab research cited in Common Sense Media AI Safety Institute' }},
 
-  // ── CIVIL SOCIETY & INDUSTRY ───────────────────────────────────────────────
-  { id:'c1', cluster:'civil', label:'Common Sense Media', size:20,
-    full:'Common Sense Media — AI Safety & Digital Citizenship',
-    desc:'Largest independent non-profit rating and reviewing children\'s digital media and AI products. Partnered with Anthropic (2023) to develop child-specific AI guidelines. CSM is cited in UNESCO AI Competency Framework for Students. Produces annual "Kids and Tech" state-of-field reports.',
-    out:{ p2:'CSM cited in UNESCO AI Competency Framework for Students (2023)', c3:'CSM-Anthropic partnership: AI guidelines for children\'s products (2023)' }},
+  { id:'a8', cluster:'academic', label:'Harvard Berkman Klein', size:13,
+    full:'Harvard Berkman Klein Center — Youth & Media Programme',
+    desc:'Leah Plunkett leads youth digital rights research ("Sharenthood", COPPA reform). The Youth & Media programme produces the evidence base for COPPA reform, children\'s data rights, and AI companion regulation. Research cited in US congressional testimony and FTC rulemaking.',
+    out:{ p6:'Berkman Klein research cited in FTC COPPA 2024 rulemaking', p2:'Harvard evidence informs UK Children\'s Code standards' }},
 
-  { id:'c2', cluster:'civil', label:'5Rights Foundation', size:18,
-    full:'5Rights Foundation — Safety by Design for Children',
-    desc:'Co-authored the UK Age Appropriate Design Code (Children\'s Code, 2021) with the UK ICO. Submitted formal evidence to EU AI Act trilogue (2022–2023) on child-specific prohibited uses. Advocates for children\'s rights to be protected by design in AI systems.',
-    out:{ p3:'5Rights co-developed UK Age Appropriate Design Code (2021)', p1:'5Rights submitted formal evidence to EU AI Act trilogue (2023)' }},
+  { id:'a9', cluster:'academic', label:'Iowa State — Gentile Lab', size:11,
+    full:'Iowa State University — Media Research Lab (Douglas Gentile)',
+    desc:'Douglas Gentile\'s landmark longitudinal studies on screen media effects on child cognition, attention, sleep, and aggression. His work establishes key evidence on dose-response relationships now applied to GenAI risk modelling. Cited in AAP screen time guidelines and multiple regulatory impact assessments.',
+    out:{ p7:'Gentile research underpins AAP screen time and AI guidelines' }},
 
-  { id:'c3', cluster:'civil', label:'Anthropic', size:16,
-    full:'Anthropic — Constitutional AI & Child Safety Program',
-    desc:'Constitutional AI methodology embeds child safety principles through AI training. Partnered with Common Sense Media (2023) to establish child safety benchmarks for LLMs. Anthropic\'s safety evaluations of Claude inform how child-facing AI systems should be designed and tested.',
-    out:{ a1:'Claude safety evaluations use SCALE educational benchmarks', p1:'Anthropic participates in EU AI Code of Practice (2024)' }},
+  { id:'a10', cluster:'academic', label:'Joan Ganz Cooney Center', size:12,
+    full:'Joan Ganz Cooney Center at Sesame Workshop',
+    desc:'Research and innovation lab at Sesame Workshop studying media, technology, and children\'s learning. Produces research on AI in early childhood education, equity in digital access, and learning outcomes. Closely aligned with UNICEF and UNESCO on early childhood AI policy.',
+    out:{ p3:'Cooney Center research cited in UNESCO early childhood AI guidance', p4:'Cooney Center contributes to UNICEF AI for children programme' }},
 
-  { id:'c4', cluster:'civil', label:'Google DeepMind', size:15,
-    full:'Google DeepMind — LearnLM & Child Safety Research',
-    desc:'LearnLM RCT (2025) demonstrates AI tutoring efficacy on executive function. DeepMind participates in EU AI Act codes of practice. Child safety team applies Constitutional AI principles to educational deployments. Project Gemini educational interfaces designed for age-appropriate interaction.',
-    out:{ a1:'LearnLM RCT (2025) is a landmark study in SCALE corpus', p1:'DeepMind participates in EU AI Office Code of Practice (2024)' }},
+  { id:'a11', cluster:'academic', label:'American Academy of Pediatrics', size:14,
+    full:'American Academy of Pediatrics (AAP) — Council on Communications & Media',
+    desc:'Jonathan D. Klein chairs the AAP digital health working group. AAP produces clinical guidelines on screen time, AI companion use, and social media exposure for 0–18 year-olds — the primary paediatric authority cited in US regulatory and legislative proceedings on child AI safety.',
+    out:{ p6:'AAP guidelines inform FTC COPPA enforcement standards', p4:'AAP co-authors UNICEF paediatric AI guidance' }},
 
-  { id:'c5', cluster:'civil', label:'Thorn', size:14,
+  { id:'a12', cluster:'academic', label:'INRIA / Ramus Lab', size:10,
+    full:'INRIA / Collège de France — Cognitive Neuroscience of Language (Franck Ramus)',
+    desc:'Franck Ramus (Collège de France) produces neurocognitive evidence on reading development, screen exposure, and AI-mediated language acquisition. French national expert on children, screens, and cognitive development. Evidence cited in French national report on screens and children (2023) and EU child AI provisions.',
+    out:{ p1:'Ramus evidence cited in French contribution to EU AI Act child provisions' }},
+
+  // ── CIVIL SOCIETY & NGOs ───────────────────────────────────────────────────
+  { id:'c1', cluster:'civil', label:'Common Sense Media', size:22,
+    full:'Common Sense Media — Youth AI Safety Institute (launched 2026)',
+    desc:'Largest independent nonprofit rating children\'s digital media. Launched the Youth AI Safety Institute (May 2026, $20M annual budget) — the first independent AI product testing lab for child safety. Funders: OpenAI Foundation, Anthropic, Pinterest, Walton Family Foundation. Services: red-teaming, scorecards, published safety reports. CEO: Jim Steyer; Senior Policy: Robbie Torney (KORA contact).',
+    out:{ b2:'Common Sense Media operates the Youth AI Safety Institute benchmark', p1:'CSM participates in EU AI Code of Practice (2024)', p3:'CSM cited in UNESCO AI Competency Framework for Students' }},
+
+  { id:'c2', cluster:'civil', label:'Thorn', size:20,
     full:'Thorn — Stop Child Sexual Abuse Material Generated by AI',
-    desc:'Leading non-profit combating child sexual abuse material (CSAM). Published seminal report on AI-generated CSAM threats (2023). Advocates for COPPA expansion to cover AI-generated content. Technology-policy bridge: Thorn\'s CSAM detection tools are used by major platforms.',
-    out:{ p5:'Thorn advocates for COPPA expansion to cover AI-generated CSAM', p1:'Thorn AI-CSAM report cited in EU AI Act prohibited uses (Art. 5)' }},
+    desc:'Leading nonprofit combating child sexual abuse material (CSAM). CEO: Julie Cordua; VP Research: Melissa Stroebel (both KORA contacts). Pioneered Safety by Design principles (signed by 15+ AI companies). AI-CSAM classifier tools used by major platforms. Reports: AI-CSAM surged from 4,700 (2023) to 400,000+ reports in H1 2025. Core voice in EU AI Act Art. 5 prohibited uses and COPPA expansion.',
+    out:{ p6:'Thorn advocates for COPPA expansion to cover AI-generated CSAM', p1:'Thorn AI-CSAM report cited in EU AI Act Art. 5 prohibited uses', c9:'Thorn co-developed Safety by Design with All Tech Is Human' }},
 
-  { id:'c6', cluster:'civil', label:'Khan Academy / Khanmigo', size:13,
-    full:'Khan Academy — Khanmigo AI Tutor (COPPA-compliant)',
-    desc:'Khanmigo: the largest deployed child-facing LLM tutoring system. Designed with full COPPA compliance, parental consent, and age-verification. Provides the largest naturalistic evidence base for AI tutoring in K-12. Khan Academy advocates for equitable AI access as a child safety concern.',
-    out:{ p5:'Khanmigo designed COPPA-compliant with age-verification (2023)', a1:'Khanmigo deployment evaluated in SCALE corpus' }},
+  { id:'c3', cluster:'civil', label:'5Rights Foundation', size:19,
+    full:'5Rights Foundation — Children\'s Digital Rights',
+    desc:'Founded by Baroness Beeban Kidron. Co-authored the UK Age Appropriate Design Code (Children\'s Code, 2021) with ICO — now adopted in UK, Australia, EU, Canada, Argentina, California. Submitted formal evidence to EU AI Act trilogue (2023). Co-founded Digital Futures for Children (LSE). Jenny Afia (co-founder) is a KORA contact and privacy law expert.',
+    out:{ p2:'5Rights co-authored the UK Age Appropriate Design Code (2021)', p1:'5Rights submitted formal evidence to EU AI Act trilogue (2023)', b8:'5Rights principles underpin IEEE 2089 Standard' }},
 
-  // ── POLICY & GOVERNANCE ────────────────────────────────────────────────────
-  { id:'p1', cluster:'policy', label:'EU AI Office', size:20,
+  { id:'c4', cluster:'civil', label:'NCMEC', size:17,
+    full:'National Center for Missing & Exploited Children — CyberTipline',
+    desc:'US nonprofit receiving mandatory AI-CSAM reports from tech platforms. CyberTipline processes 1M+ reports; hash database of 10M+ known CSAM files. AI-generated CSAM now a primary challenge. NCMEC is the central infrastructure node for child protection technology in the USA, cited in all US legislative proceedings on AI and children.',
+    out:{ p6:'NCMEC is the statutory partner for FTC/DOJ child protection enforcement', c2:'NCMEC co-operates hash database with Thorn for CSAM detection' }},
+
+  { id:'c5', cluster:'civil', label:'Internet Watch Foundation', size:15,
+    full:'Internet Watch Foundation (IWF) — AI-CSAM Detection, UK',
+    desc:'UK nonprofit with 25+ years removing online child sexual abuse material. Operates AI-powered detection and removal of CSAM. Works with Thorn and NCMEC on cross-border hash database. Cited in EU AI Act prohibited uses and UK Online Safety Act enforcement. Partner to EU AI Office Code of Practice.',
+    out:{ p1:'IWF evidence cited in EU AI Act Art. 5 prohibited uses', p2:'IWF partners with UK Ofcom on Online Safety Act enforcement' }},
+
+  { id:'c6', cluster:'civil', label:'All Tech Is Human', size:13,
+    full:'All Tech Is Human — Youth Tech Wellbeing Initiative',
+    desc:'Nonprofit coalition building responsible technology practices. Youth Tech Wellbeing programme co-developed Safety by Design Generative AI Principles with Thorn — signed by 15+ AI companies. Bridges child protection NGOs, tech industry, and policymakers on AI safety commitments.',
+    out:{ c2:'Co-developed Generative AI Safety by Design Principles with Thorn' }},
+
+  { id:'c7', cluster:'civil', label:'Keep Safe AI', size:16,
+    full:'Keep Safe AI — Child AI Safety Benchmark Initiative',
+    desc:'Co-founder: James Ryan (KORA contact, Cambridge/USA). Dedicated organisation developing child-specific AI safety standards and evaluation tools. Closest parallel initiative to KORA Bench; scope covers child-facing AI safety assessment across developmental domains.',
+    out:{ b1:'Keep Safe AI benchmark is the closest parallel initiative to KORA Bench', p1:'Keep Safe AI contributes to EU AI Office Code of Practice' }},
+
+  { id:'c8', cluster:'civil', label:'SAIFCA', size:13,
+    full:'Safe AI for Children Alliance (SAIFCA)',
+    desc:'Global mission-led alliance reducing AI risks to children. Brings together expertise across AI governance, child protection, education, law, and public policy. Provides Global South perspective largely absent from Western-dominated child AI safety discourse.',
+    out:{ p3:'SAIFCA contributes to UNESCO AI ethics implementation in Global South' }},
+
+  { id:'c9', cluster:'civil', label:'Family Online Safety Inst.', size:12,
+    full:'Family Online Safety Institute (FOSI)',
+    desc:'International nonprofit with 30+ member companies (tech, telecom, social media, gaming). Bi-annual Online Safety Survey; parental controls research (2025). Bridges industry and civil society on child online safety standards. Contributes to OECD Digital Safety by Design framework.',
+    out:{ p5:'FOSI contributes to OECD Digital Safety by Design for Children framework' }},
+
+  { id:'c10', cluster:'civil', label:'Fairplay', size:12,
+    full:'Fairplay (formerly CCFC) — Campaign for Commercial-Free Childhood',
+    desc:'US nonprofit advocacy organisation. Led coalition of 260+ organisations calling for a 5-year pause on GenAI deployment in preK-12 schools (2024). Advocates for children\'s right to a childhood free from commercial exploitation, including AI-driven personalisation and engagement manipulation.',
+    out:{ p6:'Fairplay advocacy directly shapes FTC enforcement priorities on children\'s AI' }},
+
+  { id:'c11', cluster:'civil', label:'JED Foundation', size:11,
+    full:'JED Foundation — Mental Health & Technology',
+    desc:'US nonprofit protecting the emotional health and preventing suicide among teens and young adults. Studies tech impacts on youth mental health, AI companion risks, and social media effects. Grant Bowen (Programme Manager) is a KORA contact. JED evidence informs AAP clinical guidelines and US congressional testimony on AI mental health harms.',
+    out:{ a7:'JED Foundation collaborates with Stanford Brainstorm Lab on AI companion safety' }},
+
+  { id:'c12', cluster:'civil', label:'Internet Safety Labs', size:11,
+    full:'Internet Safety Labs — AI Safety Testing',
+    desc:'Executive Director: Lisa LeVasseur (KORA contact). Independent lab testing AI products for child safety. Produces public safety ratings and contributes to EU AI Office Code of Practice consultations. Provides technical testing capacity to civil society organisations without in-house AI evaluation expertise.',
+    out:{ b5:'Internet Safety Labs operates EDSAFE-aligned AI safety testing', p1:'ISL contributes to EU AI Office Code of Practice (2024)' }},
+
+  { id:'c13', cluster:'civil', label:'Center for Humane Technology', size:12,
+    full:'Center for Humane Technology / HumaneBench',
+    desc:'Founded by Tristan Harris. Erika Anderson (buildinghumanetech.com, KORA contact) leads HumaneBench — an assessment tool for humane AI design targeting child wellbeing. Campaigns for design standards that protect children from engagement manipulation, dopamine exploitation, and AI dependency.',
+    out:{ b7:'CHT develops and maintains HumaneBench evaluation tool' }},
+
+  // ── POLICY, GOVERNANCE & FRAMEWORKS ───────────────────────────────────────
+  { id:'p1', cluster:'policy', label:'EU AI Office', size:21,
     full:'EU AI Office — AI Act Child Protection Implementation',
-    desc:'Established 2024 to implement EU AI Act. Prohibits AI that exploits child vulnerabilities (Art. 5). High-risk classification for AI in education and emotional recognition near children (Annex III). Code of Practice process (2024–2025) engages academic and civil society stakeholders.',
-    out:{ c1:'EU AI Office Code of Practice engages CSM evidence (2024)' }},
+    desc:'Established 2024 to implement EU AI Act. Art. 5 prohibits AI exploiting child vulnerabilities. Annex III: high-risk classification for AI in education and emotional recognition near children. Code of Practice process (2024–2025) engaged 1,000+ stakeholders including Thorn, IWF, Common Sense Media, Stanford HAI. First binding AI law with explicit child provisions.',
+    out:{ b8:'EU AI Act implementation requires IEEE 2089-compliant age verification' }},
 
-  { id:'p2', cluster:'policy', label:'UNESCO Digital Education', size:17,
-    full:'UNESCO — AI Ethics Recommendation & Education Framework',
-    desc:'2021 AI Ethics Recommendation (193 states): AI must protect children\'s right to develop their own reasoning. UNESCO-UNICEF "Policy Guidance on AI for Children" (2021). AI Competency Framework for Students (2023) maps to 5 cognitive domains directly aligned with KORA spheres.',
-    out:{ p4:'UNESCO and OECD jointly produce AI in Education guidelines (2022)' }},
+  { id:'p2', cluster:'policy', label:'UK Ofcom / ICO', size:17,
+    full:'UK Ofcom / ICO — Children\'s Safety Codes (Online Safety Act 2023)',
+    desc:'Children\'s Safety Codes under OSA 2023 require all regulated services to protect children. Ofcom cites OII, LSE/DFC, and 5Rights evidence in risk framework. ICO operates Age Appropriate Design Certification Scheme (AADCS) based on 5Rights-derived UK Children\'s Code. UK is the world\'s most advanced regulatory jurisdiction for child AI safety.',
+    out:{ b8:'ICO implements Age Appropriate Design Code (15 standards, IEEE 2089)' }},
 
-  { id:'p3', cluster:'policy', label:'UK Ofcom / ICO', size:15,
-    full:'UK Ofcom — Children\'s Safety Codes (Online Safety Act 2023)',
-    desc:'Children\'s Safety Codes under the Online Safety Act 2023. Ofcom must assess risk of harm to children for all regulated services. OII and LSE evidence directly cited in risk framework. Age-appropriate design, algorithmic recommendation safety, and mental health harm prevention all covered.',
-    out:{ p1:'UK-EU regulatory coordination on cross-border AI child safety standards' }},
+  { id:'p3', cluster:'policy', label:'UNESCO Digital Education', size:17,
+    full:'UNESCO — AI Ethics Recommendation (2021) & AI Competency Framework',
+    desc:'2021 AI Ethics Recommendation (193 states): AI must protect children\'s right to develop their own reasoning. AI Competency Framework for Students (2023) maps to 5 cognitive domains aligned with KORA spheres. Co-authored Policy Guidance on AI for Children (2021) with UNICEF. The foundational international normative framework for child AI safety.',
+    out:{ b1:'KORA spheres aligned with UNESCO AI Competency Framework domains', p5:'UNESCO and Council of Europe co-produce AI education standards' }},
 
-  { id:'p4', cluster:'policy', label:'OECD Education', size:13,
-    full:'OECD Education Directorate — AI in Learning & PISA Digital',
-    desc:'OECD AI Policy Observatory and PISA digital literacy assessments provide comparative international evidence on child-AI outcomes. OECD AI Principles (2019, updated 2023) align with UNESCO recommendation. OECD evidence base feeds into EU, UK, and G20 policy processes.',
-    out:{ p2:'OECD AI Principles align with UNESCO Ethics Recommendation (2021)' }},
+  { id:'p4', cluster:'policy', label:'UNICEF', size:19,
+    full:'UNICEF — AI Office + Innocenti Research Centre',
+    desc:'Multiple KORA contacts: Henrietta Ridley (Chief of AI), Steven Vosloo (Innocenti, children & AI specialist), Viviana Canon Tamayo (Partnership Lead), Eimear Farrell, Thomas Davin (Global Innovation Director). Policy Guidance on AI for Children v3 (2024). Joint Statement on AI and Rights of the Child (Nov 2025, 50+ organisations). Operates in 190+ countries.',
+    out:{ p3:'UNICEF co-authored UNESCO Policy Guidance on AI for Children (2021)', p5:'UNICEF contributes to Council of Europe child AI rights framework', b1:'UNICEF v3 guidance aligns with KORA sphere framework' }},
 
-  { id:'p5', cluster:'policy', label:'US FTC / COPPA', size:13,
-    full:'US Federal Trade Commission — COPPA Rule 2013 / 2024 Update',
-    desc:'Children\'s Online Privacy Protection Act protects under-13s. FTC 2024 COPPA rule update strengthens protections against AI systems collecting children\'s behavioural data. Thorn and Common Sense Media are primary civil society voices in COPPA rulemaking.',
-    out:{ p1:'US-EU regulatory dialogue on child AI protection standards (2024)' }},
+  { id:'p5', cluster:'policy', label:'Council of Europe', size:15,
+    full:'Council of Europe — Framework Convention on AI (2024)',
+    desc:'First international legally binding AI treaty (opened Sept 2024). Article 18 explicitly protects disabled persons and children. AI&ED (AI and Education) programme with Turing Institute. Collaborated on Children\'s AI Summit (2025, 150+ children). 46 member states + USA, Canada, Japan as observers.',
+    out:{ b8:'CoE Framework Convention references IEEE 2089 age verification standard' }},
+
+  { id:'p6', cluster:'policy', label:'US FTC / COPPA', size:15,
+    full:'Federal Trade Commission — COPPA Rule 2024 Update',
+    desc:'COPPA 2024 update strengthens protections against AI systems collecting children\'s behavioural data under 13. FTC directed to develop public educational resources on AI chatbot risks. Thorn, NCMEC, Fairplay, and Berkman Klein are primary civil society voices in COPPA rulemaking. Companion chatbot disclosure requirements under active legislation (SAFEBOTs Act, 2025).',
+    out:{ b1:'KORA safety scores can serve as evidence in FTC harm assessments' }},
+
+  { id:'p7', cluster:'policy', label:'OECD Education', size:13,
+    full:'OECD — Digital Safety by Design for Children & PISA Digital',
+    desc:'OECD framework "Digital Safety by Design for Children" (8 key components, 2024). PISA digital literacy assessments provide comparative international evidence on child-AI outcomes. Co-developing EU-OECD AI Literacy Framework for primary & secondary education (2026). OECD AI Policy Observatory feeds EU, UK, G20 policy processes.',
+    out:{ p3:'OECD AI Principles align with UNESCO Ethics Recommendation (2021)' }},
+
+  { id:'p8', cluster:'policy', label:'EU AI Act — Art. 5', size:14,
+    full:'EU AI Act 2024 — Child Protection Provisions',
+    desc:'Art. 5: Prohibited uses — AI exploiting children\'s age-related vulnerabilities. Annex III: High-risk classification for AI in education (emotion recognition, assessment systems). Art. 50: Transparency obligations for AI interacting with children. In force August 2024; prohibition provisions apply from February 2025. Foundational legal framework KORA Bench operationalises.',
+    out:{ b1:'KORA Bench operationalises EU AI Act conformity evidence requirements' }},
+
+  { id:'p9', cluster:'policy', label:'UK Children\'s Code', size:13,
+    full:'UK Age Appropriate Design Code (Children\'s Code)',
+    desc:'15 standards for online services likely accessed by children under 18. Developed by ICO with 5Rights Foundation. Now a global template: adopted in Australia, Canada, Argentina, California. Covers data minimisation, geolocation defaults, nudge techniques, and AI-powered profiling of children. Basis for IEEE 2089-2021 international standard.',
+    out:{ b8:'UK Children\'s Code is the basis of IEEE 2089-2021 international standard' }},
+
+  { id:'p10', cluster:'policy', label:'UN CRC — GC25', size:12,
+    full:'UN Convention on the Rights of the Child — General Comment 25 (Digital)',
+    desc:'General Comment 25 (2021): children\'s rights in the digital environment. States must ensure AI systems do not undermine children\'s rights to privacy, development, participation, and protection from harm. The foundational rights framework that UNESCO, UNICEF, 5Rights, and all national regulators reference when designing child AI safety measures.',
+    out:{ p4:'UNICEF co-produced GC25 as implementation guidance', p3:'UNESCO AI ethics recommendation operationalises CRC GC25 for AI systems' }},
+
+  { id:'p11', cluster:'policy', label:'GDPR Art. 8 / COPPA', size:11,
+    full:'GDPR Article 8 + COPPA — Child Data Protection Baseline',
+    desc:'GDPR Art. 8: parental consent required for processing personal data of children under 16 (13 in some states). COPPA: US federal protection under 13. AI systems collecting learning behavioural data trigger both frameworks. Together these set the global minimum baseline for child data protection — the floor on which all child AI safety frameworks build.',
+    out:{ b1:'KORA Bench flags data-intensive AI tools for GDPR/COPPA regulatory scrutiny' }},
+
+  // ── BENCHMARKS & EVALUATION ────────────────────────────────────────────────
+  { id:'b1', cluster:'bench', label:'KORA Bench ★', size:24,
+    full:'KORA Bench — Child AI Safety Evaluation Framework (Herlin 2025)',
+    desc:'The only framework systematically evaluating AI product safety for children across all 7 developmental spheres with evidence grading. Integrates study count, RCT evidence, causal confidence, and outcome polarity into a child-specific safety index usable by schools, parents, and regulators. Grounds KORA sphere counts in Stanford SCALE (475 Academic studies, 85 Neurocognitive, etc.).',
+    out:{ p1:'KORA Bench provides empirical evidence layer for EU AI Act conformity', p3:'KORA spheres aligned with UNESCO AI Competency Framework' }},
+
+  { id:'b2', cluster:'bench', label:'CSM Youth AI Safety Inst.', size:20,
+    full:'Common Sense Media Youth AI Safety Institute (2026)',
+    desc:'First independent AI product testing lab specifically for child safety. $20M annual budget. Services: red-teaming AI products, safety scorecards, risk reports, published evaluations. Advisory board: Mehran Sahami (Stanford), Dr. Jenny Radesky (UMich), Dr. Nadine Burke Harris. Funded by OpenAI Foundation, Anthropic, Pinterest, Walton Family Foundation.',
+    out:{ p1:'CSM YASI evidence feeds EU AI Office Code of Practice', b1:'KORA Bench and CSM YASI cover complementary dimensions of child AI safety' }},
+
+  { id:'b3', cluster:'bench', label:'Safe-Child-LLM Benchmark', size:15,
+    full:'Safe-Child-LLM Benchmark — Academic Evaluation Framework',
+    desc:'200-prompt dataset assessing LLM safety across child (7–12) and adolescent (13–17) developmental stages. 0–5 action labelling system for response safety. First academic benchmark specifically designed for developmental-stage-aware LLM evaluation. Cited in Common Sense Media YASI standards design and EU AI Office technical guidelines.',
+    out:{ b1:'Safe-Child-LLM covers safety; KORA Bench covers developmental outcomes — complementary scope', p1:'Benchmark cited in EU AI Office child AI evaluation guidelines' }},
+
+  { id:'b4', cluster:'bench', label:'ChildSafe Benchmark', size:14,
+    full:'ChildSafe Benchmark — Developmental Stage Simulation',
+    desc:'Evaluates LLM safety by simulating child agents with developmentally authentic behaviour patterns across 4 age bands (6–8, 9–11, 12–14, 15–17). Tests AI responses to age-specific language, curiosity, vulnerability patterns. Adopted in EDSAFE AI framework. Represents the state of the art in child-specific LLM safety testing.',
+    out:{ b5:'ChildSafe Benchmark is integrated into EDSAFE AI SAFE framework' }},
+
+  { id:'b5', cluster:'bench', label:'EDSAFE AI SAFE Benchmark', size:13,
+    full:'EDSAFE AI — SAFE Benchmarks Framework for Education',
+    desc:'EDSAFE AI produces child-centred AI safety benchmarks specifically for educational deployments. SAFE framework evaluates AI products across student safety, accuracy, fairness, and equity dimensions. Integrates ChildSafe Benchmark. Used by US K-12 school districts for AI procurement decisions.',
+    out:{ b1:'EDSAFE SAFE and KORA Bench are complementary — SAFE targets procurement, KORA targets outcomes' }},
+
+  { id:'b6', cluster:'bench', label:'Keep Safe AI Benchmark', size:14,
+    full:'Keep Safe AI — Child AI Safety Benchmark Tool',
+    desc:'James Ryan\'s (KORA contact) organisation developing child-specific AI safety evaluation standards. Closest parallel initiative to KORA Bench in scope. Focuses on safety properties of AI systems deployed near children — complements KORA\'s developmental outcomes focus.',
+    out:{ b1:'Keep Safe AI and KORA Bench are the two closest parallel evaluation frameworks in the field' }},
+
+  { id:'b7', cluster:'bench', label:'HumaneBench (CHT)', size:12,
+    full:'HumaneBench — Center for Humane Technology',
+    desc:'Assessment tool for humane AI design developed by Center for Humane Technology (Erika Anderson, KORA contact). Evaluates AI products on engagement manipulation, dependency design, dopamine exploitation, and attention engineering — dimensions directly affecting child developmental outcomes in KORA\'s Affective and Psychosocial spheres.',
+    out:{ b1:'HumaneBench engagement/dependency metrics complement KORA Affective sphere evidence' }},
+
+  { id:'b8', cluster:'bench', label:'IEEE 2089 / AADC Standard', size:13,
+    full:'IEEE 2089-2021 Standard — Age Appropriate Digital Services',
+    desc:'International standard based on 5Rights Foundation principles and UK Age Appropriate Design Code. IEEE 2089-2021 operationalises 15 design standards for child-safe digital services. Adopted by ICO (UK), referenced in Council of Europe AI Framework Convention, and cited in EU AI Act implementation guidelines. IEEE 2089.1-2024 adds online age verification.',
+    out:{ b1:'IEEE 2089 compliance is a prerequisite KORA Bench recommends for AI product certification' }},
+
 ];
 
-
-// Build edge array from node.out definitions
 const SEDGES = [];
 SNODES.forEach(n => {
   Object.entries(n.out || {}).forEach(([tgt, lbl]) => {
